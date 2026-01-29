@@ -53,12 +53,48 @@ class CLI:
     def edit_vehicle(self):
         self.list_vehicles()
         idx = int(input("Select vehicle index to edit: "))
-        make = input("New Make: ")
-        model = input("New Model: ")
-        year = int(input("New Year: "))
-        mileage = int(input("New Current Mileage: "))
-        self.controller.edit_vehicle(idx, make, model, year, mileage)
-        print(View.ok("Vehicle updated."))
+        vehicles = self.controller.get_vehicles()
+        if idx < 0 or idx >= len(vehicles):
+            print(View.warning("Invalid vehicle index."))
+            return
+        v = vehicles[idx]
+        while True:
+            print("\n" + View.color(f"Edit: {v.year} {v.make} {v.model}", View.OKCYAN))
+            print(View.menu_option(1, "Edit Make"))
+            print(View.menu_option(2, "Edit Model"))
+            print(View.menu_option(3, "Edit Year"))
+            print(View.menu_option(4, "Edit Mileage"))
+            print(View.error("5. Delete Vehicle"))
+            print(View.menu_option(0, "Back"))
+            choice = input(View.bold("Select an option: "))
+            if choice == '1':
+                v.make = input("New Make: ")
+                self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
+                print(View.ok("Make updated."))
+            elif choice == '2':
+                v.model = input("New Model: ")
+                self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
+                print(View.ok("Model updated."))
+            elif choice == '3':
+                v.year = int(input("New Year: "))
+                self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
+                print(View.ok("Year updated."))
+            elif choice == '4':
+                v.current_mileage = int(input("New Current Mileage: "))
+                self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
+                print(View.ok("Mileage updated."))
+            elif choice == '5':
+                confirm = input(View.warning("Are you sure? (y/n): "))
+                if confirm.lower() == 'y':
+                    self.controller.delete_vehicle(idx)
+                    print(View.ok("Vehicle deleted."))
+                    return
+                else:
+                    print("Deletion cancelled.")
+            elif choice == '0':
+                break
+            else:
+                print(View.warning("Invalid option."))
 
     def log_service(self):
         self.list_vehicles()

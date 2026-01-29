@@ -30,6 +30,11 @@ class DataHandler:
         self.data["vehicles"][idx] = vehicle
         self.save()
 
+    def delete_vehicle(self, idx: int):
+        if 0 <= idx < len(self.data["vehicles"]):
+            self.data["vehicles"].pop(idx)
+            self.save()
+
     def log_service(self, idx: int, service_name: str, mileage: int, date: str):
         vehicle = self.data["vehicles"][idx]
         if "last_service" not in vehicle:

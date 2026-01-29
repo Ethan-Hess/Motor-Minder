@@ -118,6 +118,9 @@ class Controller:
         vehicle = Vehicle(make, model, year, current_mileage)
         self.data_handler.update_vehicle(idx, vehicle.to_dict())
 
+    def delete_vehicle(self, idx: int):
+        self.data_handler.delete_vehicle(idx)
+
     def log_service(self, idx: int, service_name, mileage: int, date_str: str = None):
         # Accept both Enum and str for backward compatibility
         if isinstance(service_name, ServiceName):
