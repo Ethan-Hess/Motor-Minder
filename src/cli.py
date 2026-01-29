@@ -62,7 +62,26 @@ class CLI:
     def log_service(self):
         self.list_vehicles()
         idx = int(input("Select vehicle index: "))
-        service = input("Service name: ")
+        services = [
+            "oil_change",
+            "air_intake_filter",
+            "cabin_air_filter",
+            "tire_rotation",
+            "transmission_fluid",
+            "brake_pads_inspection",
+            "battery",
+            "coolant_flush",
+            "spark_plugs",
+            "brake_fluid"
+        ]
+        print("Select service:")
+        for i, s in enumerate(services):
+            print(f"  {i+1}. {s.replace('_', ' ').title()}")
+        sidx = int(input("Service number: ")) - 1
+        if sidx < 0 or sidx >= len(services):
+            print("Invalid service selection.")
+            return
+        service = services[sidx]
         mileage = int(input("Service mileage: "))
         date_str = input("Service date (YYYY-MM-DD, blank for today): ")
         self.controller.log_service(idx, service, mileage, date_str or None)

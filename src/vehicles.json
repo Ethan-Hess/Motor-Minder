@@ -1,11 +1,38 @@
 {
   "vehicles": [
     {
-      "make": "Chevy",
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2017,
+      "current_mileage": 68500,
+      "last_service": {
+        "oil_change": { "mileage": 65000, "date": "2025-10-01" },
+        "tire_rotation": { "mileage": 65000, "date": "2025-10-01" },
+        "cabin_air_filter": { "mileage": 60000, "date": "2025-04-15" }
+      }
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2020,
+      "current_mileage": 32000,
+      "last_service": {
+        "oil_change": { "mileage": 30000, "date": "2025-12-10" },
+        "air_intake_filter": { "mileage": 15000, "date": "2024-12-01" },
+        "brake_fluid": { "mileage": 20000, "date": "2025-06-01" }
+      }
+    },
+    {
+      "make": "Chevrolet",
       "model": "Cobalt",
       "year": 2010,
-      "current_mileage": 129000,
-      "last_service": {}
+      "current_mileage": 125000,
+      "last_service": {
+        "oil_change": { "mileage": 122000, "date": "2025-11-01" },
+        "tire_rotation": { "mileage": 120000, "date": "2025-08-15" },
+        "battery": { "mileage": 110000, "date": "2024-11-01" },
+        "spark_plugs": { "mileage": 100000, "date": "2023-10-01" }
+      }
     }
   ]
 }
