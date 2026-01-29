@@ -99,6 +99,6 @@ python main.py
 
 ---
 
-## 🛣 Future Roadmap
+## Future Roadmap
 
 WIP
