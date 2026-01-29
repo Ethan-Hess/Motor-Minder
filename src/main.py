@@ -1,11 +1,4 @@
-"""
-Use this file for testing and experimenting.
-"""
+from cli import CLI
 
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    CLI().run()
