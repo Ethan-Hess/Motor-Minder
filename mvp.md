@@ -53,6 +53,20 @@ The system persists data in `vehicles.json`. Below is the schema for a vehicle r
 
 ```
 
+## Service Interval Configuration
+
+Service intervals are now stored in `src/service_intervals.json` for easy updates without code changes. Each key is a service name (matching the Enum in code). Each value is an object with interval types (miles, months, years) and their min/max values as arrays. Example:
+
+```json
+{
+  "oil_change": { "miles": [5000, 7500], "months": [3, 6] },
+  "air_intake_filter": { "miles": [15000, 30000] }
+}
+```
+
+- To change recommended intervals, edit this file and restart the app.
+- Do not add comments to the JSON file (JSON does not support comments).
+- If you need to document changes, use this README or a changelog.
 ---
 
 ## Getting Started

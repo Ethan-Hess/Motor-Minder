@@ -1,0 +1,12 @@
+{
+  "oil_change": { "miles": [5000, 7500], "months": [3, 6] },
+  "air_intake_filter": { "miles": [15000, 30000] },
+  "cabin_air_filter": { "miles": [15000, 25000], "months": [12, 12] },
+  "tire_rotation": { "miles": [5000, 7500] },
+  "transmission_fluid": { "miles": [30000, 60000] },
+  "brake_pads_inspection": { "miles": [25000, 70000] },
+  "battery": { "miles": [30000, 50000], "years": [3, 5] },
+  "coolant_flush": { "miles": [30000, 50000] },
+  "spark_plugs": { "miles": [30000, 100000] },
+  "brake_fluid": { "miles": [20000, 45000], "years": [2, 3] }
+}

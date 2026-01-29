@@ -1,10 +1,25 @@
+from enum import Enum
 from typing import Dict, Optional
 from datetime import date
+from dataclasses import dataclass, field
 
+# Enum for service names
+class ServiceName(Enum):
+    OIL_CHANGE = "oil_change"
+    AIR_INTAKE_FILTER = "air_intake_filter"
+    CABIN_AIR_FILTER = "cabin_air_filter"
+    TIRE_ROTATION = "tire_rotation"
+    TRANSMISSION_FLUID = "transmission_fluid"
+    BRAKE_PADS_INSPECTION = "brake_pads_inspection"
+    BATTERY = "battery"
+    COOLANT_FLUSH = "coolant_flush"
+    SPARK_PLUGS = "spark_plugs"
+    BRAKE_FLUID = "brake_fluid"
+
+@dataclass
 class ServiceRecord:
-    def __init__(self, mileage: int, date_str: str):
-        self.mileage = mileage
-        self.date = date_str  # ISO format string
+    mileage: int
+    date: str  # ISO format string
 
     def to_dict(self) -> Dict:
         return {"mileage": self.mileage, "date": self.date}
@@ -13,13 +28,13 @@ class ServiceRecord:
     def from_dict(data: Dict) -> 'ServiceRecord':
         return ServiceRecord(data["mileage"], data["date"])
 
+@dataclass
 class Vehicle:
-    def __init__(self, make: str, model: str, year: int, current_mileage: int, last_service: Optional[Dict[str, ServiceRecord]] = None):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.current_mileage = current_mileage
-        self.last_service = last_service or {}
+    make: str
+    model: str
+    year: int
+    current_mileage: int
+    last_service: Dict[str, ServiceRecord] = field(default_factory=dict)
 
     def to_dict(self) -> Dict:
         return {

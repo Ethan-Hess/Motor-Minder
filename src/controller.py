@@ -1,35 +1,42 @@
+from dataclasses import dataclass
+# Dataclass for service status result
+@dataclass
+class ServiceStatus:
+    status: str
+    due_miles: int | None
+    due_date: object | None
+    overdue_amount: str | None
+    missing: bool
+import json
+import os
 from data_handler import DataHandler
-from models import Vehicle, ServiceRecord
+from models import Vehicle, ServiceRecord, ServiceName
 from datetime import datetime
 from typing import List, Dict
 
-class Controller:
-    SERVICE_INTERVALS = {
-        "oil_change": {"miles": (5000, 7500), "months": (3, 6)},
-        "air_intake_filter": {"miles": (15000, 30000)},
-        "cabin_air_filter": {"miles": (15000, 25000), "months": (12, 12)},
-        "tire_rotation": {"miles": (5000, 7500)},
-        "transmission_fluid": {"miles": (30000, 60000)},
-        "brake_pads_inspection": {"miles": (25000, 70000)},
-        "battery": {"miles": (30000, 50000), "years": (3, 5)},
-        "coolant_flush": {"miles": (30000, 50000)},
-        "spark_plugs": {"miles": (30000, 100000)},
-        "brake_fluid": {"miles": (20000, 45000), "years": (2, 3)}
-    }
 
-    def get_service_status(self, vehicle, service_name, today=None):
+class Controller:
+
+    def get_service_status(self, vehicle, service_name, today=None) -> 'ServiceStatus':
+        # Accept both Enum and str for backward compatibility
+        if isinstance(service_name, str):
+            try:
+                service_name = ServiceName(service_name)
+            except ValueError:
+                return ServiceStatus("Unknown", None, None, None, True)
         """
         Returns (status, due_miles, due_date) for a service.
         status: 'OK', 'Due Soon', 'Overdue'
         """
         import datetime
         intervals = self.SERVICE_INTERVALS.get(service_name, {})
-        last = vehicle.last_service.get(service_name)
+        last = vehicle.last_service.get(service_name.value)
         if not last:
-            return ("Overdue", None, None)
+            return ServiceStatus("Overdue", None, None, None, True)
         status = "OK"
         due_miles = None
         due_date = None
+        overdue_amount = None
         # Mileage logic
         if "miles" in intervals:
             min_m, max_m = intervals["miles"]
@@ -39,6 +46,7 @@ class Controller:
             if miles_since >= max_m:
                 status = "Overdue"
                 due_miles = last_mileage + max_m
+                overdue_amount = f"{current_mileage - due_miles} mi over" if current_mileage > due_miles else None
             elif miles_since >= min_m:
                 status = "Due Soon"
                 due_miles = last_mileage + max_m
@@ -57,6 +65,9 @@ class Controller:
                 if delta_months >= max_mo:
                     status = "Overdue"
                     due_date = (last_date + datetime.timedelta(days=30*max_mo)).date()
+                    days_over = (today.date() - due_date).days
+                    if days_over > 0:
+                        overdue_amount = (overdue_amount + ", " if overdue_amount else "") + f"{days_over} days over"
                 elif delta_months >= min_mo:
                     status = "Due Soon"
                     due_date = (last_date + datetime.timedelta(days=30*max_mo)).date()
@@ -68,15 +79,33 @@ class Controller:
                 if delta_years >= max_yr:
                     status = "Overdue"
                     due_date = (last_date + datetime.timedelta(days=365*max_yr)).date()
+                    days_over = (today.date() - due_date).days
+                    if days_over > 0:
+                        overdue_amount = (overdue_amount + ", " if overdue_amount else "") + f"{days_over} days over"
                 elif delta_years >= min_yr:
                     status = "Due Soon"
                     due_date = (last_date + datetime.timedelta(days=365*max_yr)).date()
                 else:
                     due_date = (last_date + datetime.timedelta(days=365*max_yr)).date()
-        return (status, due_miles, due_date)
+        return ServiceStatus(status, due_miles, due_date, overdue_amount, False)
 
     def __init__(self, data_file: str = 'vehicles.json'):
         self.data_handler = DataHandler(data_file)
+        # Load service intervals from JSON file
+        intervals_path = os.path.join(os.path.dirname(__file__), 'service_intervals.json')
+        with open(intervals_path, 'r') as f:
+            raw_intervals = json.load(f)
+        # Convert keys to ServiceName Enum and tuple values
+        self.SERVICE_INTERVALS = {}
+        for k, v in raw_intervals.items():
+            try:
+                enum_key = ServiceName(k)
+            except ValueError:
+                continue
+            self.SERVICE_INTERVALS[enum_key] = {}
+            for intv, val in v.items():
+                # Convert lists to tuples for compatibility
+                self.SERVICE_INTERVALS[enum_key][intv] = tuple(val)
 
     def get_vehicles(self) -> List[Vehicle]:
         return [Vehicle.from_dict(v) for v in self.data_handler.get_vehicles()]
@@ -89,7 +118,10 @@ class Controller:
         vehicle = Vehicle(make, model, year, current_mileage)
         self.data_handler.update_vehicle(idx, vehicle.to_dict())
 
-    def log_service(self, idx: int, service_name: str, mileage: int, date_str: str = None):
+    def log_service(self, idx: int, service_name, mileage: int, date_str: str = None):
+        # Accept both Enum and str for backward compatibility
+        if isinstance(service_name, ServiceName):
+            service_name = service_name.value
         if not date_str:
             date_str = datetime.now().strftime('%Y-%m-%d')
         self.data_handler.log_service(idx, service_name, mileage, date_str)
