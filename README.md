@@ -82,6 +82,26 @@ Planned improvements such as real vehicle integration, expanded diagnostics, etc
 <!--
 List team members and their primary responsibilities.
 -->
+The team follows a collaborative development model in which all members contribute to design, implementation, and documentation. Responsibilities are distributed by area of focus rather than rigid job titles to support flexibility and shared ownership of the project.
+
+- **Preston Little - Team Lead / Systems Coordination**
+  - Facilitates SCRUM meetings and sprint planning
+  - Maintains contribution logs and meeting notes
+  - Oversees system architecture and design consistency
+  - Contributes to core design artifacts and implementation
+- **Ethan Hess**
+  - Develops the software prototype
+  - Develops UML and use case diagrams
+  - Assists with requirements analysis
+  - Contributes to documentation and design reviews
+- **Ethan Kidd**
+  - Develops UML and use case diagrams
+  - Assists with requirements analysis
+  - Contributes to documentation and design reviews
+- **Ryan Carbine**
+  - Develops UML and use case diagrams
+  - Assists with requirements analysis
+  - Contributes to documentation and design reviews
 
 ## Setup and Usage
 <!--
