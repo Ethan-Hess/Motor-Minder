@@ -62,15 +62,55 @@ Explain the use of sample/mock vehicle data and why it is used in Sprint 1.
 <!--
 High-level testing strategy.
 -->
+#### Testing Scope
+Testing in Sprint 1 focuses on validating the core functionality of the MVP, including data handling, vehicle and service logic, and basic user interaction through the terminal-based prototype. Because the system uses simulated vehicle data, testing is limited to logical correctness rather than real-world accuracy.
+
+#### Testing Objectives
+- Verify that sample vehicle data is loaded and stored correctly
+- Ensure maintenance service recommendations are generated based on mileage rules
+- Validate correct interaction flow in the terminal interface
+- Identify and document defects early in development
+
+#### Types of Testing
+
+##### Unit Testing
+Unit testing will focus on individual classes and methods, including:
+- Vehicle mileage updates
+- Service due calculations
+- JSON data creation and loading
+
+Unit tests will be manual or lightweight, as automated testing is planned for future sprints.
+
+##### Integration Testing
+Integration testing will verify interactions between major components, including:
+- DataHandler loading vehicle data into the system
+- Controller accessing vehicle and service information
+- Correct data flow between classes
+
+##### System Testing
+System testing will be performed by running the prototype end-to-end to ensure:
+- Users can view vehicle information
+- Maintenance recommendations are displayed correctly
+- The application behaves as expected under normal usage
+
+#### Test Environment
+- **Programming Language:** Python
+- **Execution Environment:** Local development machines
+- **Data Source:** Simulated JSON vehicle data
+- **Interface:** Terminal-based user interface
+
+#### Defect Tracking
+Defects identified during testing will be documented using a standardized bug report template. Each report will include a description of the issue, steps to reproduce, expected behavior, and actual behavior. Bug resolution will be prioritized in future sprints.
+
+#### Roles and Responsibilities
+All team members are responsible for testing features they implement. The team lead coordinates testing efforts and ensures that defects are documented and reviewed.
+
+#### Limitations
+Testing in Sprint 1 does not include performance, security, or real vehicle data validation. These areas are planned for later sprints as system functionality expands.
 
 ### Test Cases
 <!--
 Brief description of example test cases.
--->
-
-## Limitations
-<!--
-Known limitations include the use of simulated data and missing integrations.
 -->
 
 ## Future Enhancements
