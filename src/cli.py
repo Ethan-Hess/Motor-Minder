@@ -3,11 +3,20 @@ from models import Vehicle
 from view import View
 import sys
 
+
 class CLI:
+    """
+    Designed to facilitate a Command Line Interface (CLI) application. It acts as the entry point, defining how the
+    program parses, processes, and executes text-based arguments typed by a user into a terminal or command prompt.
+    """
+
     def __init__(self):
         self.controller = Controller()
 
     def run(self):
+        """
+        Executes the program.
+        """
         while True:
             print("\n" + View.header("MotorMinder - Maintenance Tracker"))
             print(View.menu_option(1, "List Vehicles"))
@@ -16,7 +25,9 @@ class CLI:
             print(View.menu_option(4, "Log Service"))
             print(View.menu_option(5, "Maintenance Dashboard"))
             print(View.error("0. Exit"))
+
             choice = input(View.bold("Select an option: "))
+
             if choice == '1':
                 self.list_vehicles()
             elif choice == '2':
@@ -34,30 +45,46 @@ class CLI:
                 print(View.warning("Invalid option."))
 
     def list_vehicles(self):
+        """
+        Lists all the vehicles in the system.
+        """
         vehicles = self.controller.get_vehicles()
+
         if not vehicles:
             print(View.color("No vehicles found.", View.OKCYAN))
             return
+
         print(View.ok("--- Vehicle List ---"))
+
         for idx, v in enumerate(vehicles):
             print(View.vehicle_row(idx, v))
 
     def add_vehicle(self):
+        """
+        Adds a new vehicle.
+        """
         make = input("Make: ")
         model = input("Model: ")
         year = int(input("Year: "))
         mileage = int(input("Current Mileage: "))
         self.controller.add_vehicle(make, model, year, mileage)
+
         print(View.ok("Vehicle added."))
 
     def edit_vehicle(self):
+        """
+        Edits an existing vehicle.
+        """
         self.list_vehicles()
         idx = int(input("Select vehicle index to edit: "))
         vehicles = self.controller.get_vehicles()
+
         if idx < 0 or idx >= len(vehicles):
             print(View.warning("Invalid vehicle index."))
             return
+
         v = vehicles[idx]
+
         while True:
             print("\n" + View.color(f"Edit: {v.year} {v.make} {v.model}", View.OKCYAN))
             print(View.menu_option(1, "Edit Make"))
@@ -67,6 +94,7 @@ class CLI:
             print(View.error("5. Delete Vehicle"))
             print(View.menu_option(0, "Back"))
             choice = input(View.bold("Select an option: "))
+
             if choice == '1':
                 v.make = input("New Make: ")
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
@@ -97,8 +125,12 @@ class CLI:
                 print(View.warning("Invalid option."))
 
     def log_service(self):
+        """
+        Logs the service of a vehicle to the vehicles details.
+        """
         self.list_vehicles()
         idx = int(input("Select vehicle index: "))
+
         from models import ServiceName
         services = [
             ServiceName.OIL_CHANGE,
@@ -112,25 +144,37 @@ class CLI:
             ServiceName.SPARK_PLUGS,
             ServiceName.BRAKE_FLUID
         ]
+
         print(View.ok("Select service:"))
+
         for i, s in enumerate(services):
-            print(f"  {i+1}. {s.value.replace('_', ' ').title()}")
+            print(f"  {i + 1}. {s.value.replace('_', ' ').title()}")
+
         sidx = int(input("Service number: ")) - 1
+
         if sidx < 0 or sidx >= len(services):
             print(View.warning("Invalid service selection."))
             return
+
         service = services[sidx]
         mileage = int(input("Service mileage: "))
         date_str = input("Service date (YYYY-MM-DD, blank for today): ")
         self.controller.log_service(idx, service, mileage, date_str or None)
+        
         print(View.ok("Service logged."))
 
     def maintenance_dashboard(self):
+        """
+        Displays the maintenance dashboard.
+        """
         vehicles = self.controller.get_vehicles()
+
         if not vehicles:
             print(View.color("No vehicles found.", View.OKCYAN))
             return
+
         print(View.ok("--- Maintenance Dashboard ---"))
+
         from models import ServiceName
         all_services = [
             ServiceName.OIL_CHANGE,
@@ -144,12 +188,15 @@ class CLI:
             ServiceName.SPARK_PLUGS,
             ServiceName.BRAKE_FLUID
         ]
+
         for idx, v in enumerate(vehicles):
             print("\n" + View.color(f"[{idx}] {v.year} {v.make} {v.model}", View.OKCYAN))
             print(f"Odometer: {v.current_mileage}")
             service_rows = []
+
             for s in all_services:
                 svc_status = self.controller.get_service_status(v, s)
+
                 match svc_status.status:
                     case "OK":
                         sort_key = 0
@@ -157,11 +204,14 @@ class CLI:
                         sort_key = 1
                     case _:
                         sort_key = 2
+
                 msg = View.service_status_msg(s, svc_status)
                 service_rows.append((sort_key, msg))
+
             # Sort by OK (0), Due Soon (1), Overdue (2)
             for _, msg in sorted(service_rows, key=lambda x: x[0]):
                 print(msg)
+
 
 if __name__ == "__main__":
     CLI().run()
