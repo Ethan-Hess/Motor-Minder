@@ -57,7 +57,7 @@ class Vehicle:
     model: str
     year: int
     current_mileage: int
-    last_service: Dict[str, ServiceRecord] = field(default_factory=dict)
+    last_service: Dict[ServiceName, ServiceRecord] = field(default_factory=dict)
 
     def to_dict(self) -> Dict:
         """
