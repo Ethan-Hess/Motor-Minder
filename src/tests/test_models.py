@@ -12,16 +12,33 @@ vehicle = Vehicle("Hyundai", "Elantra", 2023, 62000,
 
 class TestServiceRecord(TestCase):
     def test_to_dict(self):
+        """
+        Tests whether a ServiceRecord object was converted to a dictionary.
+
+        Test Case: #21
+        Test Date: 2/4/2026
+        """
         result = record.to_dict()
 
         self.assertEqual(result, {"mileage": 60000, "date": "2022-12-10"})
 
     def test_from_dict(self):
+        """
+
+        :Test Case:
+        :Test Date: 2/4/2026:
+        """
         self.fail()
 
 
 class TestVehicle(TestCase):
     def test_to_dict(self):
+        """
+        Tests whether a Vehicle object was converted to a dictionary.
+
+        Test Case: #23
+        Test Date: 2/4/2026
+        """
         result = vehicle.to_dict()
 
         expected = {
