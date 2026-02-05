@@ -1,12 +1,14 @@
 from unittest import TestCase
 
-from models import ServiceRecord, Vehicle
+from models import ServiceRecord, Vehicle, ServiceName
 
 oil_change = ServiceRecord(600, "2021-11-11")
 tire_rotation = ServiceRecord(6000, "2025-01-15")
 
 record = ServiceRecord(mileage=60000, date="2022-12-10")
-vehicle = Vehicle("Hyundai", "Elantra", 2023, 62000, {"oil_change": oil_change, "tire_rotation": tire_rotation})
+vehicle = Vehicle("Hyundai", "Elantra", 2023, 62000,
+                  {ServiceName.OIL_CHANGE: oil_change, ServiceName.TIRE_ROTATION: tire_rotation})
+
 
 class TestServiceRecord(TestCase):
     def test_to_dict(self):
