@@ -59,8 +59,8 @@ class TestVehicle(TestCase):
             "year": 2023,
             "current_mileage": 62000,
             "last_service": {
-                "oil_change": {"mileage": 600, "date": "2021-11-11"},
-                "tire_rotation": {"mileage": 6000, "date": "2025-01-15"}
+                ServiceName.OIL_CHANGE: {"mileage": 600, "date": "2021-11-11"},
+                ServiceName.TIRE_ROTATION: {"mileage": 6000, "date": "2025-01-15"}
             }
         }
 
@@ -78,8 +78,8 @@ class TestVehicle(TestCase):
             "year": 2023,
             "current_mileage": 62000,
             "last_service": {
-                "oil_change": {"mileage": 600, "date": "2021-11-11"},
-                "tire_rotation": {"mileage": 6000, "date": "2025-01-15"}
+                ServiceName.OIL_CHANGE: {"mileage": 600, "date": "2021-11-11"},
+                ServiceName.TIRE_ROTATION: {"mileage": 6000, "date": "2025-01-15"}
             }
         }
 
@@ -87,9 +87,9 @@ class TestVehicle(TestCase):
 
         assert vehicle_record.make == "Hyundai"
         assert vehicle_record.model == "Elantra"
-        assert vehicle_record.year == 2021
-        assert vehicle_record.current_mileage == 6200
-        assert vehicle_record.last_service == {
-            "oil_change": {"mileage": 600, "date": "2021-11-11"},
-            "tire_rotation": {"mileage": 6000, "date": "2025-01-15"}
-        }
+        assert vehicle_record.year == 2023
+        assert vehicle_record.current_mileage == 62000
+        assert vehicle_record.last_service[ServiceName.OIL_CHANGE].mileage == 600
+        assert vehicle_record.last_service[ServiceName.OIL_CHANGE].date == "2021-11-11"
+        assert vehicle_record.last_service[ServiceName.TIRE_ROTATION].mileage == 6000
+        assert vehicle_record.last_service[ServiceName.TIRE_ROTATION].date == "2025-01-15"
