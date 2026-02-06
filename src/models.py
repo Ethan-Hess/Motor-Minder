@@ -40,9 +40,11 @@ class ServiceRecord:
     @staticmethod
     def from_dict(data: Dict) -> 'ServiceRecord':
         """
-
-        :param data:
-        :return:
+        Creates a ServiceRecord instance from a dictionary.
+        :param data: A dictionary containing service record data with keys:
+                    - 'mileage' (int): Mileage at which the service was performed
+                    - 'date' (str): Date of service in ISO format (YYYY-MM-DD)
+        :return:  ServiceRecord object populated with the provided data.
         """
         return ServiceRecord(data["mileage"], data["date"])
 
@@ -75,9 +77,14 @@ class Vehicle:
     @staticmethod
     def from_dict(data: Dict) -> 'Vehicle':
         """
-
-        :param data:
-        :return:
+        Creates a Vehicle instance from a dictionary.
+        :param data: A dictionary containing vehicle data with keys:
+                    - 'make' (str): Vehicle manufacturer
+                    - 'model' (str): Vehicle model
+                    - 'year' (int): Vehicle model year
+                    - 'current_mileage' (int): Current mileage of the vehicle
+                    - 'last_service' (dict, optional): A mapping of service names to service record dictionaries
+        :return: A Vehicle object populated with the provided data.
         """
         last_service = {k: ServiceRecord.from_dict(v) for k, v in data.get("last_service", {}).items()}
 
