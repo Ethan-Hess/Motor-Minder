@@ -46,7 +46,6 @@ List and justify selected design patterns (e.g., Strategy, Factory, Observer).
 <!--
 List included UML diagrams (Class, Use Case, etc.).
 -->
-![](docs/diagrams/MotorMinder (Sprint 1) - First Iteration.png)
 
 ## Prototype
 <!--
