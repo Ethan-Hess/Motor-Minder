@@ -5,7 +5,7 @@ from models import ServiceRecord, Vehicle, ServiceName
 oil_change = ServiceRecord(600, "2021-11-11")
 tire_rotation = ServiceRecord(6000, "2025-01-15")
 
-record = ServiceRecord(mileage=60000, date="2022-12-10")
+record = ServiceRecord(60000, "2022-12-10")
 vehicle = Vehicle("Hyundai", "Elantra", 2023, 62000,
                   {ServiceName.OIL_CHANGE: oil_change, ServiceName.TIRE_ROTATION: tire_rotation})
 
@@ -20,22 +20,34 @@ class TestServiceRecord(TestCase):
         """
         result = record.to_dict()
 
-        self.assertEqual(result, {"mileage": 60000, "date": "2022-12-10"})
+        expected = {
+            "mileage": 60000,
+            "date": "2022-12-10"
+        }
+
+        self.assertEqual(result, expected)
 
     def test_from_dict(self):
         """
-
-        :Test Case:
-        :Test Date: 2/4/2026:
+        Tests whether a ServiceRecord object was converted from a dictionary.
+        Test Case: #22
+        Test Date: 2/6/2026:
         """
-        self.fail()
+        result = {
+            "mileage": 60000,
+            "date": "2022-12-10"
+        }
+
+        service_record = ServiceRecord.from_dict(result)
+
+        assert service_record.mileage == 60000
+        assert service_record.date == "2022-12-10"
 
 
 class TestVehicle(TestCase):
     def test_to_dict(self):
         """
         Tests whether a Vehicle object was converted to a dictionary.
-
         Test Case: #23
         Test Date: 2/4/2026
         """
@@ -55,4 +67,29 @@ class TestVehicle(TestCase):
         assert result == expected
 
     def test_from_dict(self):
-        self.fail()
+        """
+        Tests whether a Vehicle object was converted from a dictionary.
+        Test Case: #24
+        Test Date: 2/6/2026:
+        """
+        result = {
+            "make": "Hyundai",
+            "model": "Elantra",
+            "year": 2023,
+            "current_mileage": 62000,
+            "last_service": {
+                "oil_change": {"mileage": 600, "date": "2021-11-11"},
+                "tire_rotation": {"mileage": 6000, "date": "2025-01-15"}
+            }
+        }
+
+        vehicle_record = Vehicle.from_dict(result)
+
+        assert vehicle_record.make == "Hyundai"
+        assert vehicle_record.model == "Elantra"
+        assert vehicle_record.year == 2021
+        assert vehicle_record.current_mileage == 6200
+        assert vehicle_record.last_service == {
+            "oil_change": {"mileage": 600, "date": "2021-11-11"},
+            "tire_rotation": {"mileage": 6000, "date": "2025-01-15"}
+        }
