@@ -62,7 +62,6 @@ Explain the use of sample/mock vehicle data and why it is used in Sprint 1.
 <!--
 High-level testing strategy.
 -->
-#### Testing Scope
 Testing in Sprint 1 focuses on validating the core functionality of the MVP, including data handling, vehicle and service logic, and basic user interaction through the terminal-based prototype. Because the system uses simulated vehicle data, testing is limited to logical correctness rather than real-world accuracy.
 
 #### Testing Objectives
