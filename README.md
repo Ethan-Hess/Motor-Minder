@@ -130,7 +130,7 @@ The team follows a collaborative development model in which all members contribu
   - Oversees system architecture and design consistency
   - Contributes to core design artifacts and implementation
 - **Ethan Hess**
-  - Develops the software prototype
+  - Developed the software prototype
   - Develops UML and use case diagrams
   - Assists with requirements analysis
   - Contributes to documentation and design reviews
