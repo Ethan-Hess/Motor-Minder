@@ -261,6 +261,7 @@ Odometer: 26000
 Data Storage
 All data is stored locally in a JSON file (vehicles.json), automatically created at first run.
 Example:
+```json
 {
   "vehicles": [
     {
@@ -275,15 +276,19 @@ Example:
     }
   ]
 }
+```
 
 Customization
 service_intervals.json
 Defines when each service becomes Due Soon or Overdue by mileage or time:
+```json
 {
   "OIL_CHANGE": { "miles": [4000, 6000], "months": [4, 6] },
   "TIRE_ROTATION": { "miles": [5000, 8000] },
   "BATTERY": { "years": [3, 5] }
 }
+```
+
 Key	Meaning
 "miles": [min, max]	Min = Due Soon threshold; Max = Overdue threshold
 "months" / "years"	Optional time-based thresholds
