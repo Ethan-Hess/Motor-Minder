@@ -232,16 +232,16 @@ Odometer: 26000
 <!--
 Brief explanation of important directories/files.
 -->
-MotorMinder/
-│
-├── main.py                 # Entry point, runs CLI
-├── cli.py                  # Handles user interaction and menu navigation
-├── controller.py           # Core application logic and service status checks
-├── data_handler.py         # Handles JSON data loading, saving, and updating
-├── models.py               # Defines Vehicle, ServiceRecord, and ServiceName enums
-├── view.py                 # Handles CLI formatting (colors, bold text, etc.)
-├── service_intervals.json  # Defines maintenance intervals for each service
-└── vehicles.json           # Auto-generated data file for user’s vehicles
+MotorMinder
+
+- main.py                 # Entry point, runs CLI
+- cli.py                  # Handles user interaction and menu navigation
+- controller.py           # Core application logic and service status checks
+- data_handler.py         # Handles JSON data loading, saving, and updating
+- models.py               # Defines Vehicle, ServiceRecord, and ServiceName enums
+- view.py                 # Handles CLI formatting (colors, bold text, etc.)
+- service_intervals.json  # Defines maintenance intervals for each service
+- vehicles.json           # Auto-generated data file for user’s vehicles
 
 ## Assessment and Risks
 <!--
