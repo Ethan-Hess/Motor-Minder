@@ -8,10 +8,20 @@ class DataHandler:
     Responsible for loading and saving vehicle and service data using JSON.
     """
 
+    _instance = None
+    def __new__(cls, filename: str = 'vehicles.json'):
+        if cls._instance is None:
+            cls._instance = super(DataHandler, cls).__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+
     def __init__(self, filename: str = 'vehicles.json'):
+        if self._initialized:
+            return
         self.filename = filename
         self.data = {"vehicles": []}
         self.load()
+        self._initialized = True
 
     def load(self):
         """
