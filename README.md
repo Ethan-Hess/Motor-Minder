@@ -41,6 +41,41 @@ Brief explanation of how the system is structured using OO principles.
 <!--
 List and justify selected design patterns (e.g., Strategy, Factory, Observer).
 -->
+#### 1. Model-View-Controller (MVC)
+
+**Pattern:** MVC
+
+- **Model:** Handles data logic and persistence (`models.py`, `data_handler.py`).
+- **View:** Manages CLI formatting and user output (`view.py`).
+- **Controller:** Bridges user actions and model updates (`controller.py`).
+- **CLI:** Entry point for user interaction (`cli.py`).
+
+**Benefit:** Promotes separation of concerns, easier maintenance, and scalability.
+
+---
+
+#### 2. Singleton Pattern
+
+**Pattern:** Singleton
+
+- **Where:** `DataHandler` class in `data_handler.py`.
+- **How:** Uses a class-level `_instance` and custom `__new__` method to ensure only one instance exists for data management.
+
+**Benefit:** Centralizes data access and persistence, prevents conflicting data states.
+
+---
+
+#### 3. Command Pattern
+
+**Pattern:** Command
+
+- **Where:** `CLI` class in `cli.py`.
+- **How:** Maps user menu selections to method calls, acting as a command dispatcher.
+
+**Benefit:** Simplifies user input handling, makes adding new commands straightforward.
+
+---
+
 
 ## UML Diagrams
 <!--
