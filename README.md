@@ -116,6 +116,11 @@ Brief description of example test cases.
 <!--
 Planned improvements such as real vehicle integration, expanded diagnostics, etc.
 -->
+ Future Improvements
+•	Export maintenance logs to CSV or PDF
+•	Add reminder notifications (e.g., via email or system alerts)
+•	Implement user accounts
+•	Develop a GUI 
 
 ## Team Roles and Responsibilities
 <!--
@@ -146,11 +151,97 @@ The team follows a collaborative development model in which all members contribu
 <!--
 Instructions for running the prototype.
 -->
+Installation
+Requirements
+•	Python 3.10+
+Setup
+After downloading the program you’ll see the menu:
+MotorMinder - Maintenance Tracker
+1. List Vehicles
+2. Add Vehicle
+3. Edit Vehicle
+4. Log Service
+5. Maintenance Dashboard
+0. Exit
+
+ Usage
+1. Add a Vehicle
+Make: Toyota
+Model: Camry
+Year: 2020
+Current Mileage: 25000
+Vehicle added.
+2. Edit a Vehicle
+Update make, model, year, or mileage or delete the vehicle entirely.
+3. Log a Service
+Record a service event:
+Select vehicle index: 0
+Select service: Oil Change
+Service mileage: 26000
+Service date (YYYY-MM-DD, blank for today):
+Service logged.
+4. Maintenance Dashboard
+Displays each vehicle’s maintenance status:
+[0] 2020 Toyota Camry
+Odometer: 26000
+  ✅ Oil Change: OK (Due @ 32000 mi)
+  🟡 Tire Rotation: Due Soon (Due @ 30000 mi)
+  🔴 Battery: Overdue (1,200 mi over)
+
+Data Storage
+All data is stored locally in a JSON file (vehicles.json), automatically created at first run.
+Example:
+{
+  "vehicles": [
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "current_mileage": 42000,
+      "last_service": {
+        "oil_change": {"mileage": 40000, "date": "2025-10-01"},
+        "tire_rotation": {"mileage": 38000, "date": "2025-08-15"}
+      }
+    }
+  ]
+}
+
+Customization
+service_intervals.json
+Defines when each service becomes Due Soon or Overdue by mileage or time:
+{
+  "OIL_CHANGE": { "miles": [4000, 6000], "months": [4, 6] },
+  "TIRE_ROTATION": { "miles": [5000, 8000] },
+  "BATTERY": { "years": [3, 5] }
+}
+Key	Meaning
+"miles": [min, max]	Min = Due Soon threshold; Max = Overdue threshold
+"months" / "years"	Optional time-based thresholds
+
+ Example Session
+1. Add Vehicle
+2. Log Oil Change
+3. View Dashboard
+Output:
+[0] 2020 Toyota Camry
+Odometer: 26000
+  ✅ Oil Change: OK (Due @ 32000 mi)
+  🟡 Tire Rotation: Due Soon
 
 ## Repository Structure
 <!--
 Brief explanation of important directories/files.
 -->
+MotorMinder/
+│
+├── main.py                 # Entry point, runs CLI
+├── cli.py                  # Handles user interaction and menu navigation
+├── controller.py           # Core application logic and service status checks
+├── data_handler.py         # Handles JSON data loading, saving, and updating
+├── models.py               # Defines Vehicle, ServiceRecord, and ServiceName enums
+├── view.py                 # Handles CLI formatting (colors, bold text, etc.)
+├── service_intervals.json  # Defines maintenance intervals for each service
+└── vehicles.json           # Auto-generated data file for user’s vehicles
 
 ## Assessment and Risks
 <!--
