@@ -30,35 +30,6 @@ List features that are intentionally out of scope for Sprint 1.
 High-level description of system components.
 Reference the architecture diagram.
 -->
-graph TD
-    %% Actor
-    User((Vehicle Owner))
-
-    subgraph SystemBoundary [MotorMinder Python Script]
-        CLI[Console Interface]
-        Engine[Maintenance Logic]
-        DataHandler[JSON Parser/Handler]
-    end
-
-    %% Storage
-    File[(vehicles.json)]
-
-    %% Interactions
-    User -->|Inputs car details/services| CLI
-    CLI -->|Displays history/recommendations| User
-    
-    CLI <--> Engine
-    Engine <--> DataHandler
-    
-    DataHandler -->|Writes car records| File
-    File -->|Loads records on startup| DataHandler
-
-    %% Styling
-    style SystemBoundary fill:#fdfdfd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
-    style CLI fill:#3776ab,color:#fff
-    style Engine fill:#3776ab,color:#fff
-    style DataHandler fill:#3776ab,color:#fff
-    style File fill:#ffd43b,color:#000
 
 ## Design Overview
 ### Object-Oriented Design
