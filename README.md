@@ -82,7 +82,7 @@ List and justify selected design patterns (e.g., Strategy, Factory, Observer).
 List included UML diagrams (Class, Use Case, etc.).
 -->
 ### Class Diagram
-![MotorMinder Sprint 1 Diagram](docs/diagrams/MotorMinder%20(Sprint%201)%20-%20First%20Iteration.png)
+![MotorMinder Sprint 1 Diagram](docs/diagrams/UML%20Diagram.png)
 
 ### Architecture Diagram
 ```mermaid
@@ -116,6 +116,10 @@ graph TD
     style DataHandler fill:#3776ab,color:#fff
     style File fill:#ffd43b,color:#000
 ```
+
+### Use Case Diagram
+![Motor Minder Use Case Diagram](docs/diagrams/Use%20Case%20Diagram.png)
+
 
 ## Prototype
 <!--
