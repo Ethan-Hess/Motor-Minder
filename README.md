@@ -50,12 +50,6 @@ or simulated vehicle records. Using this approach will allow the core logic and
 system design to be developed without having to rely on any external hardware or
 third-party integrations.
 
-### Planned for Future Sprints
-
-<!--
-List features that are intentionally out of scope for Sprint 1.
--->
-
 ## System Architecture
 
 <!--
@@ -221,12 +215,6 @@ graph TD
 
 ![Motor Minder Use Case Diagram](docs/diagrams/Use%20Case%20Diagram.png)
 
-## Prototype
-
-<!--
-Description of the prototype, what it demonstrates, and its limitations.
--->
-
 ## Data Model
 
 <!--
@@ -314,12 +302,6 @@ reviewed.
 Testing in Sprint 1 does not include performance, security, or real vehicle data
 validation. These areas are planned for later sprints as system functionality
 expands.
-
-### Test Cases
-
-<!--
-Brief description of example test cases.
--->
 
 ## Future Enhancements
 
@@ -480,12 +462,6 @@ src/
 ├── service_intervals.json # Defines maintenance intervals for each service
 ├── vehicles.json          # Auto-generated data file for user’s vehicles
 ```
-
-## Assessment and Risks
-
-<!--
-Identified risks, assumptions, and mitigation strategies.
--->
 
 ## Contributers
 
