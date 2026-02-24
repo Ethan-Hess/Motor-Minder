@@ -1,6 +1,7 @@
 from controller import Controller
-from models import Vehicle
 from view import View
+from datetime import datetime
+from models import ServiceName
 import sys
 
 
@@ -9,6 +10,19 @@ class CLI:
     Designed to facilitate a Command Line Interface (CLI) application. It acts as the entry point, defining how the
     program parses, processes, and executes text-based arguments typed by a user into a terminal or command prompt.
     """
+
+    SERVICES = [
+        ServiceName.OIL_CHANGE,
+        ServiceName.AIR_INTAKE_FILTER,
+        ServiceName.CABIN_AIR_FILTER,
+        ServiceName.TIRE_ROTATION,
+        ServiceName.TRANSMISSION_FLUID,
+        ServiceName.BRAKE_PADS_INSPECTION,
+        ServiceName.BATTERY,
+        ServiceName.COOLANT_FLUSH,
+        ServiceName.SPARK_PLUGS,
+        ServiceName.BRAKE_FLUID
+    ]
 
     def __init__(self):
         self.controller = Controller()
@@ -28,19 +42,22 @@ class CLI:
 
             choice = input(View.bold("Select an option: "))
 
-            if choice == '1':
-                self.list_vehicles()
-            elif choice == '2':
-                self.add_vehicle()
-            elif choice == '3':
-                self.edit_vehicle()
-            elif choice == '4':
-                self.log_service()
-            elif choice == '5':
-                self.maintenance_dashboard()
-            elif choice == '0':
+            actions = {
+                '1': self.list_vehicles,
+                '2': self.add_vehicle,
+                '3': self.edit_vehicle,
+                '4': self.log_service,
+                '5': self.maintenance_dashboard,
+            }
+
+            if choice == '0':
                 print(View.ok("Goodbye!"))
                 sys.exit(0)
+
+            action = actions.get(choice)
+
+            if action:
+                action()
             else:
                 print(View.warning("Invalid option."))
 
@@ -65,23 +82,89 @@ class CLI:
         """
         make = input("Make: ")
         model = input("Model: ")
-        year = int(input("Year: "))
-        mileage = int(input("Current Mileage: "))
+
+        # Year validation
+        while True:
+            year_input = input("Year: ")
+            try:
+                year = int(year_input)
+                if year < 1886:
+                    print(View.warning("Invalid input. Year must be greater than 1886."))
+                    continue
+                break
+            except ValueError:
+                print(View.warning("Invalid input. Please enter a valid integer for year."))
+
+        # Mileage validation
+        while True:
+            mileage_input = input("Current Mileage: ")
+            try:
+                mileage = int(mileage_input)
+                if mileage < 0:
+                    print(View.warning("Invalid input. Mileage must be greater than 0."))
+                    continue
+                break
+            except ValueError:
+                print(View.warning("Invalid input. Please enter a valid integer for mileage."))
+
         self.controller.add_vehicle(make, model, year, mileage)
 
         print(View.ok("Vehicle added."))
+
+    def get_valid_vehicle_index(self):
+        """
+        Gets a valid vehicle index.
+        """
+        vehicles = self.controller.get_vehicles()
+
+        if not vehicles:
+            print(View.error("No vehicles found."))
+            return None
+
+        while True:
+            try:
+                idx = int(input(f"Select vehicle index (0 - {len(vehicles) - 1}): "))
+                if idx < 0 or idx >= len(vehicles):
+                    print(View.warning(f"Invalid input. Please enter a number between 0 and {len(vehicles) - 1}."))
+                    continue
+                return idx
+            except ValueError:
+                print(View.warning("Invalid input. Please enter a valid integer for vehicle."))
+
+    def get_valid_int(self, prompt, min_value=None, max_value=None):
+        """
+        Gets a valid integer value (i.e., vehicle year or mileage).
+        :param prompt: Input prompt.
+        :param min_value: Minimum value (for vehicle year, the minimum value should be 1886).
+        :param max_value: Maximum value (for vehicle year, the maximum value should be the current year).
+        :return: Valid integer value.
+        """
+        while True:
+            try:
+                value = int(input(prompt))
+                if min_value is not None and value < min_value:
+                    print(View.warning(f"Value must be at least {min_value}."))
+                    continue
+
+                if max_value is not None and value > max_value:
+                    print(View.warning(f"Value must be at most {max_value}."))
+                    continue
+
+                return value
+            except ValueError:
+                print(View.warning("Invalid input. Please enter a valid integer."))
 
     def edit_vehicle(self):
         """
         Edits an existing vehicle.
         """
         self.list_vehicles()
-        idx = int(input("Select vehicle index to edit: "))
-        vehicles = self.controller.get_vehicles()
 
-        if idx < 0 or idx >= len(vehicles):
-            print(View.warning("Invalid vehicle index."))
+        idx = self.get_valid_vehicle_index()
+        if idx is None:
             return
+
+        vehicles = self.controller.get_vehicles()
 
         v = vehicles[idx]
 
@@ -104,11 +187,13 @@ class CLI:
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Model updated."))
             elif choice == '3':
-                v.year = int(input("New Year: "))
+                current_year = datetime.today().year
+                v.year = self.get_valid_int("New Year: ", min_value=1886, max_value=current_year)
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Year updated."))
             elif choice == '4':
-                v.current_mileage = int(input("New Current Mileage: "))
+                v.current_mileage = self.get_valid_int(f"New Current Mileage (>= {v.current_mileage}): ",
+                                                       min_value=v.current_mileage)
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Mileage updated."))
             elif choice == '5':
@@ -124,26 +209,38 @@ class CLI:
             else:
                 print(View.warning("Invalid option."))
 
+    def get_valid_date(self, prompt):
+        """
+        Gets a valid date.
+        :param prompt: Users chosen date.
+        :return: Valid date.
+        """
+        while True:
+            date_input = input(prompt)
+
+            if date_input.strip() == "":
+                return None
+
+            try:
+                parsed_date = datetime.strptime(date_input, "%Y-%m-%d")
+                if parsed_date.date() > datetime.today().date():
+                    print(View.error("Invalid date. Please enter a valid date."))
+                    continue
+                return date_input
+            except ValueError:
+                print(View.warning("Invalid date format. Use YYYY-MM-DD."))
+
     def log_service(self):
         """
         Logs the service of a vehicle to the vehicles details.
         """
         self.list_vehicles()
-        idx = int(input("Select vehicle index: "))
 
-        from models import ServiceName
-        services = [
-            ServiceName.OIL_CHANGE,
-            ServiceName.AIR_INTAKE_FILTER,
-            ServiceName.CABIN_AIR_FILTER,
-            ServiceName.TIRE_ROTATION,
-            ServiceName.TRANSMISSION_FLUID,
-            ServiceName.BRAKE_PADS_INSPECTION,
-            ServiceName.BATTERY,
-            ServiceName.COOLANT_FLUSH,
-            ServiceName.SPARK_PLUGS,
-            ServiceName.BRAKE_FLUID
-        ]
+        idx = self.get_valid_vehicle_index()
+        if idx is None:
+            return
+
+        services = self.SERVICES
 
         print(View.ok("Select service:"))
 
@@ -157,10 +254,11 @@ class CLI:
             return
 
         service = services[sidx]
-        mileage = int(input("Service mileage: "))
-        date_str = input("Service date (YYYY-MM-DD, blank for today): ")
+
+        mileage = self.get_valid_int("Service mileage: ", min_value=0)
+        date_str = self.get_valid_date("Service date (YYYY-MM-DD, blank for today): ")
         self.controller.log_service(idx, service, mileage, date_str or None)
-        
+
         print(View.ok("Service logged."))
 
     def maintenance_dashboard(self):
@@ -175,26 +273,14 @@ class CLI:
 
         print(View.ok("--- Maintenance Dashboard ---"))
 
-        from models import ServiceName
-        all_services = [
-            ServiceName.OIL_CHANGE,
-            ServiceName.AIR_INTAKE_FILTER,
-            ServiceName.CABIN_AIR_FILTER,
-            ServiceName.TIRE_ROTATION,
-            ServiceName.TRANSMISSION_FLUID,
-            ServiceName.BRAKE_PADS_INSPECTION,
-            ServiceName.BATTERY,
-            ServiceName.COOLANT_FLUSH,
-            ServiceName.SPARK_PLUGS,
-            ServiceName.BRAKE_FLUID
-        ]
+        services = self.SERVICES
 
         for idx, v in enumerate(vehicles):
             print("\n" + View.color(f"[{idx}] {v.year} {v.make} {v.model}", View.OKCYAN))
             print(f"Odometer: {v.current_mileage}")
             service_rows = []
 
-            for s in all_services:
+            for s in services:
                 svc_status = self.controller.get_service_status(v, s)
 
                 match svc_status.status:
