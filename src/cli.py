@@ -272,6 +272,10 @@ class CLI:
             return
 
         print(View.ok("--- Maintenance Dashboard ---"))
+        print(View.color("Status Legend:", View.OKCYAN))
+        print("  OK        - Service is within the recommended interval.")
+        print("  Due Soon  - Service is approaching its mileage limit.")
+        print("  Overdue   - Service mileage has exceeded the limit.")
 
         services = self.SERVICES
 
