@@ -1,0 +1,107 @@
+{
+  "mechanics": [
+    {
+      "name": "Gearhead Garage",
+      "address": {
+        "address_line_1": "123 Main Street",
+        "address_line_2": "Unit 3",
+        "city": "Orem",
+        "state": "UT",
+        "zip_code": 84058,
+        "country": "USA"
+      },
+      "phone": "801-123-4567",
+      "email": "contact@gearheadgarage.com",
+      "website": "https://gearheadgarage.com",
+      "services": [
+        "oil_change",
+        "tire_rotation",
+        "brake_fluid",
+        "battery"
+      ],
+      "rating": 4.3,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-14:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Auto Body and Soul",
+      "address": {
+        "address_line_1": "44 State Street",
+        "address_line_2": "",
+        "city": "American Fork",
+        "state": "UT",
+        "zip_code": 84003,
+        "country": "USA"
+      },
+      "phone": "801-111-3443",
+      "email": "contact@autobodyandsoul.com",
+      "website": "https://autobodyandsoul.com",
+      "services": [
+        "oil_change",
+        "tire_rotation",
+        "brake_fluid",
+        "battery",
+        "coolant_flush"
+      ],
+      "rating": 3.6,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "9:00-13:00"
+      }
+    },
+    {
+      "name": "Engine Ethos",
+      "address": {
+        "address_line_1": "1050 Center Street",
+        "address_line_2": "",
+        "city": "Springville",
+        "state": "UT",
+        "zip_code": 84663,
+        "country": "USA"
+      },
+      "phone": "801-555-0098",
+      "email": "contact@engineethos.com",
+      "website": "https://engineethos.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "battery",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.7,
+      "price_range": "$$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    }
+  ]
+}
