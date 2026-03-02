@@ -29,7 +29,10 @@ or even overdue services. A third, and important, feature of the system is the
 ability to find nearby mechanics. The application will provide a list of local
 mechanic options (using sample data in the initial release), to allow users to
 connect service visits with specific repair shops or providers.
-
+A third feature of the system is the ability to find nearby mechanics. 
+The application now includes a sample mechanic directory, allowing users to 
+browse local repair shops, view ratings, available services, and contact 
+information. This feature helps users associate service records with actual providers.
 ## Features
 
 ### Implemented in Sprint 1 (MVP)
@@ -49,7 +52,10 @@ vehicles, and all data will be generated and managed internally using predefined
 or simulated vehicle records. Using this approach will allow the core logic and
 system design to be developed without having to rely on any external hardware or
 third-party integrations.
-
+In addition to vehicle tracking, the MVP now includes a mechanic lookup feature. 
+Users can access a list of sample local mechanic shops, each with detailed 
+information such as name, address, services offered, business hours, and ratings. 
+This data is stored in a new mechanics.json file and can be viewed through the CLI.
 ## System Architecture
 
 <!--
@@ -61,7 +67,8 @@ MotorMinder is organized into several core components:
 
 - **CLI (Console Interface):** The main entry point for user interaction.
   Presents menus, receives user input, and displays information and
-  recommendations.
+  recommendations. The CLI includes a “Find Mechanics” option that
+  pulls data from mechanics.json and displays nearby service centers.
 - **Controller:** Acts as the bridge between the CLI and the underlying
   data/model logic. Processes user actions, updates data, and coordinates
   responses.
@@ -226,6 +233,11 @@ features without relying on real-world data. This allows rapid development and
 ensures maintenance tracking and recommendations work as intended before
 integrating actual vehicle data in future releases.
 
+In Sprint 2, MotorMinder uses sample mechanic data to test and demonstrate core
+features without relying on real-world data. This will ensure that a user
+will be able to find mechanic for their vehicle before we start adding in real 
+raw data. 
+
 ## Testing
 
 ### Testing Plan
@@ -246,6 +258,7 @@ data, testing is limited to logical correctness rather than real-world accuracy.
   rules
 - Validate correct interaction flow in the terminal interface
 - Identify and document defects early in development
+-  Verify that sample mechanic data is loaded and stored correctly
 
 #### Types of Testing
 
@@ -276,6 +289,7 @@ System testing will be performed by running the prototype end-to-end to ensure:
 - Users can view vehicle information
 - Maintenance recommendations are displayed correctly
 - The application behaves as expected under normal usage
+- Users can view mechanic information
 
 #### Test Environment
 
@@ -372,7 +386,8 @@ MotorMinder - Maintenance Tracker
 3. Edit Vehicle
 4. Log Service
 5. Maintenance Dashboard
-6. Exit
+6. Find Mechanics
+7. Exit
 ```
 
 ### Usage
@@ -399,6 +414,12 @@ MotorMinder - Maintenance Tracker
    ✅ Oil Change: OK (Due @ 32000 mi)  
    🟡 Tire Rotation: Due Soon (Due @30000mi)  
    🔴 Battery: Overdue (1,200 mi over)
+5. **Mechanic Overview**
+   [0] Gearhead Garage
+   Services: Oil Change, Tire Rotation, Brake Fluid, Battery
+   Rating: 4.3 | Price: $$
+   Address: 123 Main Street, Orem, UT 84058
+   Hours: Mon–Fri 8:00–17:00 | Sat 9:00–14:00 | Sun Closed
 
 ### Data Storage
 
@@ -461,6 +482,7 @@ src/
 ├── view.py                # Handles CLI formatting (colors, bold text, etc.)
 ├── service_intervals.json # Defines maintenance intervals for each service
 ├── vehicles.json          # Auto-generated data file for user’s vehicles
+|-- mechanics.json         # New JSON file for local mechanic directory
 ```
 
 ## Contributers
