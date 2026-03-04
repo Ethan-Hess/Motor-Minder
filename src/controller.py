@@ -17,7 +17,7 @@ class ServiceStatus:
 import json
 import os
 from data_handler import DataHandler
-from models import Vehicle, ServiceRecord, ServiceName
+from models import Vehicle, ServiceRecord, ServiceName, Mechanic
 from datetime import datetime
 from typing import List, Dict
 
@@ -123,8 +123,8 @@ class Controller:
 
         return ServiceStatus(status, due_miles, due_date, overdue_amount, False)
 
-    def __init__(self, data_file: str = 'vehicles.json'):
-        self.data_handler = DataHandler(data_file)
+    def __init__(self, vehicle_file: str = 'vehicles.json'):
+        self.data_handler = DataHandler(vehicle_file)
         # Load service intervals from JSON file
         intervals_path = os.path.join(os.path.dirname(__file__), 'service_intervals.json')
 
@@ -213,3 +213,23 @@ class Controller:
         v = vehicles[idx]
 
         return {k: ServiceRecord.from_dict(vv) for k, vv in v.get('last_service', {}).items()}
+
+    def get_mechanics_by_city(self, city, state):
+        """
+
+        :param city:
+        :param state:
+        :return:
+        """
+        mechanics = self.data_handler.get_mechanics()
+        city = city.strip().lower()
+        state = state.strip().lower()
+
+        for mechanic in mechanics:
+            mechanic_city = mechanic["address"]["city"].strip().lower()
+            mechanic_state = mechanic["address"]["state"].strip().lower()
+
+            if mechanic_city == city and mechanic_state == state:
+                return mechanic
+
+        return None

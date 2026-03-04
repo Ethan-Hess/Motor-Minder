@@ -1,7 +1,7 @@
 from controller import Controller
 from view import View
 from datetime import datetime
-from models import ServiceName
+from models import ServiceName, Address
 import sys
 
 
@@ -38,6 +38,7 @@ class CLI:
             print(View.menu_option(3, "Edit Vehicle"))
             print(View.menu_option(4, "Log Service"))
             print(View.menu_option(5, "Maintenance Dashboard"))
+            print(View.menu_option(6, "Find a Mechanic"))
             print(View.error("0. Exit"))
 
             choice = input(View.bold("Select an option: "))
@@ -48,6 +49,7 @@ class CLI:
                 '3': self.edit_vehicle,
                 '4': self.log_service,
                 '5': self.maintenance_dashboard,
+                '6': self.find_mechanic,
             }
 
             if choice == '0':
@@ -301,6 +303,41 @@ class CLI:
             # Sort by OK (0), Due Soon (1), Overdue (2)
             for _, msg in sorted(service_rows, key=lambda x: x[0]):
                 print(msg)
+
+    def find_mechanic(self):
+        """
+        Finds a mechanic for the user that is closest to their location.
+        """
+        city = input("Enter your city: ")
+        state = input("Enter your state (e.g., UT): ")
+
+        mechanic = self.controller.get_mechanics_by_city(city, state)
+
+        if mechanic is None:
+            print(View.color("No mechanics found.", View.OKCYAN))
+            return
+
+        address = mechanic["address"]
+        services_formatted = ", ".join(s.replace("_", " ").title() for s in mechanic["services"])
+
+        print("\nA mechanic was found in your city:")
+        print("Name:", mechanic["name"])
+        print("Address:",
+              f"{address['address_line_1']}, "
+              f"{address['city']}, "
+              f"{address['state']} {address['zip_code']}")
+        print("Phone:", mechanic["phone"])
+        print("Email:", mechanic["email"])
+        print("Website:", mechanic["website"])
+        print("Services:", services_formatted)
+        print("Rating:", mechanic["rating"])
+        print("Price Range:", mechanic["price_range"])
+        print("Appointment Required:", mechanic["appointment_required"])
+        print("Hours:")
+        day_order = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+        for day in day_order:
+            if day in mechanic["hours"]:
+                print(f"  {day.title():<9} {mechanic['hours'][day]}")
 
 
 if __name__ == "__main__":

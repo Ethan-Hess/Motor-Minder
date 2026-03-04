@@ -1,23 +1,176 @@
 {
   "mechanics": [
     {
-      "name": "Gearhead Garage",
+      "name": "Iron Wrench Auto Repair",
       "address": {
-        "address_line_1": "123 Main Street",
-        "address_line_2": "Unit 3",
-        "city": "Orem",
+        "address_line_1": "101 Main St",
+        "address_line_2": "",
+        "city": "Alpine",
         "state": "UT",
-        "zip_code": 84058,
+        "zip_code": 84004,
         "country": "USA"
       },
-      "phone": "801-123-4567",
-      "email": "contact@gearheadgarage.com",
-      "website": "https://gearheadgarage.com",
+      "phone": "801-555-1001",
+      "email": "service@ironwrench.com",
+      "website": "https://www.ironwrench.com",
       "services": [
         "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
         "tire_rotation",
-        "brake_fluid",
-        "battery"
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.2,
+      "price_range": "$$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Redline Garage",
+      "address": {
+        "address_line_1": "202 State St",
+        "address_line_2": "",
+        "city": "American Fork",
+        "state": "UT",
+        "zip_code": 84003,
+        "country": "USA"
+      },
+      "phone": "801-555-1002",
+      "email": "info@redlinegarage.com",
+      "website": "https://www.redlinegarage.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.5,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Summit Auto Works",
+      "address": {
+        "address_line_1": "15 Pioneer Rd",
+        "address_line_2": "",
+        "city": "Cedar Fort",
+        "state": "UT",
+        "zip_code": 84013,
+        "country": "USA"
+      },
+      "phone": "801-555-1003",
+      "email": "contact@summitautoworks.com",
+      "website": "https://www.summitautoworks.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 3.9,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Precision Pit Stop",
+      "address": {
+        "address_line_1": "88 Highland Dr",
+        "address_line_2": "",
+        "city": "Cedar Hills",
+        "state": "UT",
+        "zip_code": 84062,
+        "country": "USA"
+      },
+      "phone": "801-555-1004",
+      "email": "service@precisionpitstop.com",
+      "website": "https://www.precisionpitstop.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.1,
+      "price_range": "$$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Canyon Road Mechanics",
+      "address": {
+        "address_line_1": "350 Ranches Pkwy",
+        "address_line_2": "",
+        "city": "Eagle Mountain",
+        "state": "UT",
+        "zip_code": 84005,
+        "country": "USA"
+      },
+      "phone": "801-555-1005",
+      "email": "support@canyonroadmechanics.com",
+      "website": "https://www.canyonroadmechanics.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
       ],
       "rating": 4.3,
       "price_range": "$$",
@@ -28,31 +181,35 @@
         "wednesday": "8:00-17:00",
         "thursday": "8:00-17:00",
         "friday": "8:00-17:00",
-        "saturday": "9:00-14:00",
+        "saturday": "9:00-15:00",
         "sunday": "closed"
       }
     },
     {
-      "name": "Auto Body and Soul",
+      "name": "Titan Torque Automotive",
       "address": {
-        "address_line_1": "44 State Street",
+        "address_line_1": "12 Summit Ave",
         "address_line_2": "",
-        "city": "American Fork",
+        "city": "Elk Ridge",
         "state": "UT",
-        "zip_code": 84003,
+        "zip_code": 84651,
         "country": "USA"
       },
-      "phone": "801-111-3443",
-      "email": "contact@autobodyandsoul.com",
-      "website": "https://autobodyandsoul.com",
+      "phone": "801-555-1006",
+      "email": "info@titantorqueauto.com",
+      "website": "https://www.titantorqueauto.com",
       "services": [
         "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
         "tire_rotation",
-        "brake_fluid",
-        "battery",
-        "coolant_flush"
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
       ],
-      "rating": 3.6,
+      "rating": 4.0,
       "price_range": "$",
       "appointment_required": false,
       "hours": {
@@ -62,22 +219,22 @@
         "thursday": "8:00-17:00",
         "friday": "8:00-17:00",
         "saturday": "9:00-15:00",
-        "sunday": "9:00-13:00"
+        "sunday": "closed"
       }
     },
     {
-      "name": "Engine Ethos",
+      "name": "Blue Collar Auto Care",
       "address": {
-        "address_line_1": "1050 Center Street",
+        "address_line_1": "77 Camp Floyd Rd",
         "address_line_2": "",
-        "city": "Springville",
+        "city": "Fairfield",
         "state": "UT",
-        "zip_code": 84663,
+        "zip_code": 84013,
         "country": "USA"
       },
-      "phone": "801-555-0098",
-      "email": "contact@engineethos.com",
-      "website": "https://engineethos.com",
+      "phone": "801-555-1007",
+      "email": "contact@bluecollarauto.com",
+      "website": "https://www.bluecollarauto.com",
       "services": [
         "oil_change",
         "air_intake_filter",
@@ -85,13 +242,641 @@
         "tire_rotation",
         "transmission_fluid",
         "brake_pads_inspection",
-        "battery",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 3.8,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Apex Engine & Transmission",
+      "address": {
+        "address_line_1": "44 Center St",
+        "address_line_2": "",
+        "city": "Genola",
+        "state": "UT",
+        "zip_code": 84655,
+        "country": "USA"
+      },
+      "phone": "801-555-1008",
+      "email": "service@apexenginetransmission.com",
+      "website": "https://www.apexenginetransmission.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.4,
+      "price_range": "$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Granite State Garage",
+      "address": {
+        "address_line_1": "9 Main St",
+        "address_line_2": "",
+        "city": "Goshen",
+        "state": "UT",
+        "zip_code": 84633,
+        "country": "USA"
+      },
+      "phone": "801-555-1009",
+      "email": "info@granitestategarage.com",
+      "website": "https://www.granitestategarage.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 3.7,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "High Gear Performance",
+      "address": {
+        "address_line_1": "3100 W 4800 N",
+        "address_line_2": "",
+        "city": "Highland",
+        "state": "UT",
+        "zip_code": 84003,
+        "country": "USA"
+      },
+      "phone": "801-555-1010",
+      "email": "support@highgearperformance.com",
+      "website": "https://www.highgearperformance.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.6,
+      "price_range": "$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Rust Belt Repair Co.",
+      "address": {
+        "address_line_1": "1250 E Main St",
+        "address_line_2": "",
+        "city": "Lehi",
+        "state": "UT",
+        "zip_code": 84043,
+        "country": "USA"
+      },
+      "phone": "801-555-1011",
+      "email": "service@rustbeltrepair.com",
+      "website": "https://www.rustbeltrepair.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
         "coolant_flush",
         "spark_plugs",
         "brake_fluid"
       ],
       "rating": 4.7,
       "price_range": "$$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Silverline Auto Shop",
+      "address": {
+        "address_line_1": "500 N State St",
+        "address_line_2": "",
+        "city": "Lindon",
+        "state": "UT",
+        "zip_code": 84042,
+        "country": "USA"
+      },
+      "phone": "801-555-1012",
+      "email": "info@silverlineauto.com",
+      "website": "https://www.silverlineauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.1,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Thunderbolt Mechanics",
+      "address": {
+        "address_line_1": "850 N Main St",
+        "address_line_2": "",
+        "city": "Mapleton",
+        "state": "UT",
+        "zip_code": 84664,
+        "country": "USA"
+      },
+      "phone": "801-555-1013",
+      "email": "contact@thunderboltmechanics.com",
+      "website": "https://www.thunderboltmechanics.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.3,
+      "price_range": "$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Valley View Auto Service",
+      "address": {
+        "address_line_1": "1600 S State St",
+        "address_line_2": "",
+        "city": "Orem",
+        "state": "UT",
+        "zip_code": 84058,
+        "country": "USA"
+      },
+      "phone": "801-555-1014",
+      "email": "service@valleyviewauto.com",
+      "website": "https://www.valleyviewauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.4,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Ironclad Automotive",
+      "address": {
+        "address_line_1": "400 N Main St",
+        "address_line_2": "",
+        "city": "Payson",
+        "state": "UT",
+        "zip_code": 84651,
+        "country": "USA"
+      },
+      "phone": "801-555-1015",
+      "email": "info@ironcladautomotive.com",
+      "website": "https://www.ironcladautomotive.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 3.9,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "ProTech Auto Solutions",
+      "address": {
+        "address_line_1": "215 S Main St",
+        "address_line_2": "",
+        "city": "Pleasant Grove",
+        "state": "UT",
+        "zip_code": 84062,
+        "country": "USA"
+      },
+      "phone": "801-555-1016",
+      "email": "support@protechauto.com",
+      "website": "https://www.protechauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.2,
+      "price_range": "$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Backroad Garage",
+      "address": {
+        "address_line_1": "750 W Center St",
+        "address_line_2": "",
+        "city": "Provo",
+        "state": "UT",
+        "zip_code": 84601,
+        "country": "USA"
+      },
+      "phone": "801-555-1017",
+      "email": "service@backroadgarage.com",
+      "website": "https://www.backroadgarage.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 2.8,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "8:00-14:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Urban Torque Auto",
+      "address": {
+        "address_line_1": "60 W Main St",
+        "address_line_2": "",
+        "city": "Salem",
+        "state": "UT",
+        "zip_code": 84653,
+        "country": "USA"
+      },
+      "phone": "801-555-1018",
+      "email": "info@urbantorqueauto.com",
+      "website": "https://www.urbantorqueauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.0,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "RoadReady Repair",
+      "address": {
+        "address_line_1": "120 E Main St",
+        "address_line_2": "",
+        "city": "Santaquin",
+        "state": "UT",
+        "zip_code": 84655,
+        "country": "USA"
+      },
+      "phone": "801-555-1019",
+      "email": "contact@roadreadyrepair.com",
+      "website": "https://www.roadreadyrepair.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 3.8,
+      "price_range": "$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Cornerstone Car Care",
+      "address": {
+        "address_line_1": "925 N Redwood Rd",
+        "address_line_2": "",
+        "city": "Saratoga Springs",
+        "state": "UT",
+        "zip_code": 84045,
+        "country": "USA"
+      },
+      "phone": "801-555-1020",
+      "email": "service@cornerstonecarcare.com",
+      "website": "https://www.cornerstonecarcare.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.5,
+      "price_range": "$$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Full Throttle Auto",
+      "address": {
+        "address_line_1": "600 N Main St",
+        "address_line_2": "",
+        "city": "Spanish Fork",
+        "state": "UT",
+        "zip_code": 84660,
+        "country": "USA"
+      },
+      "phone": "801-555-1021",
+      "email": "info@fullthrottleauto.com",
+      "website": "https://www.fullthrottleauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.3,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Mile Marker Mechanics",
+      "address": {
+        "address_line_1": "455 S Main St",
+        "address_line_2": "",
+        "city": "Springville",
+        "state": "UT",
+        "zip_code": 84663,
+        "country": "USA"
+      },
+      "phone": "801-555-1022",
+      "email": "support@milemarkermechanics.com",
+      "website": "https://www.milemarkermechanics.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.6,
+      "price_range": "$$",
+      "appointment_required": true,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Patriot Auto Works",
+      "address": {
+        "address_line_1": "300 N Mill Rd",
+        "address_line_2": "",
+        "city": "Vineyard",
+        "state": "UT",
+        "zip_code": 84059,
+        "country": "USA"
+      },
+      "phone": "801-555-1023",
+      "email": "contact@patriotauto.com",
+      "website": "https://www.patriotauto.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.1,
+      "price_range": "$$",
+      "appointment_required": false,
+      "hours": {
+        "monday": "8:00-17:00",
+        "tuesday": "8:00-17:00",
+        "wednesday": "8:00-17:00",
+        "thursday": "8:00-17:00",
+        "friday": "8:00-17:00",
+        "saturday": "9:00-15:00",
+        "sunday": "closed"
+      }
+    },
+    {
+      "name": "Gearhead Garage",
+      "address": {
+        "address_line_1": "25 Hillside Dr",
+        "address_line_2": "",
+        "city": "Woodland Hills",
+        "state": "UT",
+        "zip_code": 84653,
+        "country": "USA"
+      },
+      "phone": "801-555-1024",
+      "email": "info@gearheadgarage.com",
+      "website": "https://www.gearheadgarage.com",
+      "services": [
+        "oil_change",
+        "air_intake_filter",
+        "cabin_air_filter",
+        "tire_rotation",
+        "transmission_fluid",
+        "brake_pads_inspection",
+        "coolant_flush",
+        "spark_plugs",
+        "brake_fluid"
+      ],
+      "rating": 4.4,
+      "price_range": "$",
       "appointment_required": true,
       "hours": {
         "monday": "8:00-17:00",

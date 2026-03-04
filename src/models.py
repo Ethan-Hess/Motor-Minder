@@ -1,6 +1,5 @@
 from enum import Enum
-from typing import Dict, Optional
-from datetime import date
+from typing import Dict, List
 from dataclasses import dataclass, field
 
 
@@ -94,4 +93,93 @@ class Vehicle:
             data["year"],
             data["current_mileage"],
             last_service
+        )
+
+
+@dataclass
+class Address:
+    """
+    Represents an address.
+    """
+    address_line_1: str
+    address_line_2: str
+    city: str
+    state: str
+    zip_code: int
+    country: str
+
+    def to_dict(self) -> Dict:
+        """
+        Converts an Address to a dict.
+        :return: Address as dict.
+        """
+        return {
+            "address_line_1": self.address_line_1,
+            "address_line_2": self.address_line_2,
+            "city": self.city,
+            "state": self.state,
+            "zip_code": self.zip_code,
+            "country": self.country,
+        }
+
+    @staticmethod
+    def from_dict(data: Dict) -> 'Address':
+        """
+        Creates an Address instance from a dictionary.
+        :param data: A dictionary containing address data with keys.
+        :return: An Address object populated with the provided data.
+        """
+        return Address(
+            data["address_line_1"],
+            data.get("address_line_2", ""),
+            data["city"],
+            data["state"],
+            data["zip_code"],
+            data["country"],
+        )
+
+
+@dataclass
+class Mechanic:
+    """
+    Represents a mechanic.
+    """
+    name: str
+    address: Address
+    phone: str
+    email: str
+    website: str
+    services: List[str]
+    rating: float
+    price_range: str
+    appointment_required: bool
+    hours: Dict[str, str] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict:
+        return {
+            "name": self.name,
+            "address": self.address.to_dict(),
+            "phone": self.phone,
+            "email": self.email,
+            "website": self.website,
+            "services": self.services,
+            "rating": self.rating,
+            "price_range": self.price_range,
+            "appointment_required": self.appointment_required,
+            "hours": self.hours,
+        }
+
+    @staticmethod
+    def from_dict(data: Dict) -> 'Mechanic':
+        return Mechanic(
+            name=data["name"],
+            address=Address.from_dict(data["address"]),
+            phone=data["phone"],
+            email=data["email"],
+            website=data["website"],
+            services=data.get("services", []),
+            rating=float(data.get("rating", 0.0)),
+            price_range=data.get("price_range", "$"),
+            appointment_required=data.get("appointment_required", False),
+            hours=data.get("hours", {}),
         )
