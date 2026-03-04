@@ -169,6 +169,7 @@ class CLI:
         vehicles = self.controller.get_vehicles()
 
         v = vehicles[idx]
+        changed = False
 
         while True:
             print("\n" + View.color(f"Edit: {v.year} {v.make} {v.model}", View.OKCYAN))
@@ -184,20 +185,24 @@ class CLI:
                 v.make = input("New Make: ")
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Make updated."))
+                changed = True
             elif choice == '2':
                 v.model = input("New Model: ")
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Model updated."))
+                changed = True
             elif choice == '3':
                 current_year = datetime.today().year
                 v.year = self.get_valid_int("New Year: ", min_value=1886, max_value=current_year)
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Year updated."))
+                changed = True
             elif choice == '4':
                 v.current_mileage = self.get_valid_int(f"New Current Mileage (>= {v.current_mileage}): ",
                                                        min_value=v.current_mileage)
                 self.controller.edit_vehicle(idx, v.make, v.model, v.year, v.current_mileage)
                 print(View.ok("Mileage updated."))
+                changed = True
             elif choice == '5':
                 confirm = input(View.warning("Are you sure? (y/n): "))
                 if confirm.lower() == 'y':
@@ -207,6 +212,10 @@ class CLI:
                 else:
                     print("Deletion cancelled.")
             elif choice == '0':
+                if changed:
+                    updated_vehicle = self.controller.get_vehicles()[idx]
+                    print(View.ok("\nVehicle updated."))
+                    print(View.vehicle_row(idx, updated_vehicle))
                 break
             else:
                 print(View.warning("Invalid option."))
