@@ -52,6 +52,8 @@ vehicles, and all data will be generated and managed internally using predefined
 or simulated vehicle records. Using this approach will allow the core logic and
 system design to be developed without having to rely on any external hardware or
 third-party integrations.
+
+### Implemented in Sprint 2
 In addition to vehicle tracking, the MVP now includes a mechanic lookup feature. 
 Users can access a list of sample local mechanic shops, each with detailed 
 information such as name, address, services offered, business hours, and ratings. 
