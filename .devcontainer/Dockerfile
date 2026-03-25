@@ -9,7 +9,7 @@ RUN apt-get update \
     curl \
     gnupg \
     lsb-release \
-    openjdk-17-jre-headless \
+    openjdk-21-jdk-headless \
     python3 \
     python3-pip \
     python3-venv \

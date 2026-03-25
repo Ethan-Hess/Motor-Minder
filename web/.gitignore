@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.env
 .env.local
 .DS_Store
 .vscode/
+firebase-debug.log
+firestore-debug.log
