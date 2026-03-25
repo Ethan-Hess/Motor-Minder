@@ -1,18 +1,26 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{userId}/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    // TEMPORARY: open rules for local development.
+    // Re-enable scoped rules before any non-local deployment.
+    match /{document=**} {
+      allow read, write: if true;
     }
 
-    match /service_intervals/{document=**} {
-      allow read: if true;
-      allow write: if false;
-    }
-
-    match /mechanics/{document=**} {
-      allow read: if true;
-      allow write: if false;
-    }
+    // Previous scoped rules:
+    // match /users/{userId}/{document=**} {
+    //   allow read, write: if userId == 'dev-local-user'
+    //     || (request.auth != null && request.auth.uid == userId);
+    // }
+    //
+    // match /service_intervals/{document=**} {
+    //   allow read: if true;
+    //   allow write: if false;
+    // }
+    //
+    // match /mechanics/{document=**} {
+    //   allow read: if true;
+    //   allow write: if false;
+    // }
   }
 }
