@@ -41,7 +41,7 @@ In the web stack, MVC is implemented as:
 
 - **View** -> React pages/components
 - **Controller** -> React service layer (and optional Cloud Functions for trusted operations)
-- **Model** -> TypeScript domain types + Firestore documents
+- **Model** -> JavaScript domain modules/constants + Firestore documents
 
 ---
 
@@ -67,7 +67,7 @@ Rules:
 
 ## 2.2 Application Layer (Controller)
 
-**Tech:** TypeScript service modules (frontend), optional Firebase Functions (server)
+**Tech:** JavaScript service modules (frontend), optional Firebase Functions (server)
 
 Responsibilities:
 
@@ -88,7 +88,7 @@ This layer is the conceptual successor to `mvp/controller.py`.
 
 ## 2.3 Domain Layer (Model)
 
-**Tech:** TypeScript interfaces/unions + pure domain functions
+**Tech:** JavaScript modules/constants + pure domain functions
 
 Responsibilities:
 
@@ -254,7 +254,7 @@ web/src/
   services/          # Application layer (Controller)
   repositories/      # Data access layer
   types/             # Domain model layer
-  lib/firebase.ts    # Platform initialization
+  lib/firebase.js    # Platform initialization
 ```
 
 ---
@@ -264,7 +264,7 @@ web/src/
 - `mvp/cli.py` -> React pages/components
 - `mvp/controller.py` -> `web/src/services/*`
 - `mvp/data_handler.py` -> `web/src/repositories/*`
-- `mvp/models.py` -> `web/src/types/domain.ts`
+- `mvp/models.py` -> `web/src/types/domain.js`
 - `mvp/service_intervals.json` -> Firestore `service_intervals` collection
 - `mvp/vehicles.json` -> Firestore `users/{uid}/vehicles` + `users/{uid}/service_logs`
 
@@ -293,7 +293,7 @@ graph TD
   C[Controller Layer\nApplication Services]
   R[Repository Layer\nFirestore Repositories]
   P[Platform Layer\nFirebase SDK / Firestore / Auth]
-  M[Model Layer\nTypeScript Domain Types]
+  M[Model Layer\nJavaScript Domain Modules]
 
   V --> C
   C --> R
@@ -465,7 +465,7 @@ flowchart LR
     PAGES[React Pages/Components]
     SRV[Service Layer]
     REPO[Repository Layer]
-    TYPES[TypeScript Domain Types]
+    TYPES[JavaScript Domain Modules]
     FV[(Firestore users/{uid}/vehicles)]
     FL[(Firestore users/{uid}/service_logs)]
     FI[(Firestore service_intervals)]

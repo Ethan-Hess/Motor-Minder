@@ -40,26 +40,26 @@ Inside `web/src/`:
 ```text
 src/
 ├── app/
-│   └── router.tsx
+│   └── router.jsx
 ├── components/
 ├── features/
 │   ├── vehicles/
 │   ├── services/
 │   └── mechanics/
 ├── lib/
-│   └── firebase.ts
+│   └── firebase.js
 ├── pages/
-│   ├── DashboardPage.tsx
-│   ├── VehiclesPage.tsx
-│   ├── LogServicePage.tsx
-│   └── MechanicsPage.tsx
+│   ├── DashboardPage.jsx
+│   ├── VehiclesPage.jsx
+│   ├── LogServicePage.jsx
+│   └── MechanicsPage.jsx
 ├── services/
-│   ├── vehicleService.ts
-│   └── maintenanceService.ts
+│   ├── vehicleService.js
+│   └── maintenanceService.js
 ├── types/
-│   └── domain.ts
-├── App.tsx
-└── main.tsx
+│   └── domain.js
+├── App.jsx
+└── main.jsx
 ```
 
 ## 4) Starter File Templates
@@ -77,7 +77,7 @@ VITE_FIREBASE_APP_ID=
 
 ### 4.2 `web/src/lib/firebase.js`
 
-```ts
+```js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -99,57 +99,29 @@ export const db = getFirestore(app);
 
 ### 4.3 `web/src/types/domain.js`
 
-```ts
-export type ServiceName =
-  | "oil_change"
-  | "air_intake_filter"
-  | "cabin_air_filter"
-  | "tire_rotation"
-  | "transmission_fluid"
-  | "brake_pads_inspection"
-  | "battery"
-  | "coolant_flush"
-  | "spark_plugs"
-  | "brake_fluid";
-
-export interface ServiceRecord {
-  mileage: number;
-  date: string; // ISO yyyy-mm-dd
-}
-
-export interface Vehicle {
-  id: string;
-  make: string;
-  model: string;
-  year: number;
-  currentMileage: number;
-  userId: string;
-  lastService: Partial<Record<ServiceName, ServiceRecord>>;
-}
+```js
+export const SERVICE_NAMES = [
+  "oil_change",
+  "air_intake_filter",
+  "cabin_air_filter",
+  "tire_rotation",
+  "transmission_fluid",
+  "brake_pads_inspection",
+  "battery",
+  "coolant_flush",
+  "spark_plugs",
+  "brake_fluid",
+];
 ```
 
 ### 4.4 `web/src/services/maintenanceService.js`
 
-```ts
-import type { ServiceRecord } from "../types/domain";
-
-export type ServiceStatus = "OK" | "Due Soon" | "Overdue" | "Unknown";
-
-type Interval = {
-  miles?: [number, number];
-  months?: [number, number];
-  years?: [number, number];
-};
-
-export function getServiceStatus(
-  currentMileage: number,
-  lastService: ServiceRecord | undefined,
-  interval: Interval | undefined,
-): ServiceStatus {
+```js
+export function getServiceStatus(currentMileage, lastService, interval) {
   if (!interval) return "Unknown";
   if (!lastService) return "Overdue";
 
-  let status: ServiceStatus = "OK";
+  let status = "OK";
   const milesSince = currentMileage - lastService.mileage;
 
   if (interval.miles) {
@@ -164,7 +136,7 @@ export function getServiceStatus(
 
 ### 4.5 `web/src/App.jsx`
 
-```tsx
+```jsx
 function App() {
   return (
     <main style={{ fontFamily: "system-ui", padding: 16 }}>

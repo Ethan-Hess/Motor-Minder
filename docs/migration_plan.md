@@ -205,7 +205,7 @@ firebase deploy --only hosting
 | CLI                      | Menu interactions      | React routes/pages and UI flows |
 | Controller               | Business orchestration | App services/use cases          |
 | DataHandler (Singleton)  | JSON file I/O          | Firestore repository layer      |
-| Models                   | Domain structures      | TypeScript interfaces/types     |
+| Models                   | Domain structures      | JavaScript data shapes/modules  |
 
 ### 3.4 Data Ownership Model
 
@@ -319,7 +319,7 @@ Boundary guideline:
 | `mvp/cli.py` menu loop                    | React routes/pages + UI components                             |
 | `mvp/controller.py` orchestration         | Frontend service layer, then Cloud Functions for trusted paths |
 | `mvp/data_handler.py` JSON persistence    | Firestore repositories + rules                                 |
-| `mvp/models.py` dataclasses/enums         | TypeScript interfaces/unions                                   |
+| `mvp/models.py` dataclasses/enums         | JavaScript data shapes/constants                               |
 | `mvp/vehicles.json` local file            | Firestore user-scoped collections                              |
 | `mvp/service_intervals.json` local config | Firestore read-only config collection                          |
 
@@ -398,7 +398,7 @@ sequenceDiagram
 - MVC remains conceptually useful:
   - View -> React UI
   - Controller -> app services/use cases
-  - Model -> TypeScript domain types
+  - Model -> JavaScript domain modules and constants
 - Singleton DataHandler becomes Firebase SDK singleton init + repository modules
 - Command menu actions become route-based UI actions and event handlers
 
@@ -413,7 +413,7 @@ sequenceDiagram
 
 ### Phase 1: Domain Model Port
 
-- Port `Vehicle`, `ServiceRecord`, `Mechanic`, and service name enums to TypeScript types
+- Port `Vehicle`, `ServiceRecord`, `Mechanic`, and service name enums to JavaScript modules/constants
 - Ensure field parity with existing JSON schemas
 
 ### Phase 2: Data Layer Migration
@@ -461,7 +461,7 @@ sequenceDiagram
 
 ## 8) Next-Step Decisions to Confirm
 
-1. TypeScript is the default (recommended)
+1. JavaScript is the default (recommended for current MVP)
 2. Mechanics data strategy: static seed vs editable collection
 3. Business logic placement: frontend service layer only vs backend API/Cloud Functions
 
