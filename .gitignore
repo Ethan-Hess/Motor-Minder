@@ -39,3 +39,9 @@ Thumbs.db
 # Project specific
 *.json~
 *.bak
+
+# Node / Vite
+node_modules/
+web/node_modules/
+web/dist/
+*.tsbuildinfo
