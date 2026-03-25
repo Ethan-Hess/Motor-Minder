@@ -89,7 +89,7 @@ firebase login
 ### 1.2 Create React + Vite App
 
 ```bash
-npm create vite@latest web -- --template react-ts
+npm create vite@latest web -- --template react
 cd web
 npm install
 ```
@@ -175,7 +175,7 @@ firebase deploy --only hosting
 
 ### 2.4 Recommended Team Conventions
 
-- Use TypeScript-first approach for schema safety
+- Use JavaScript-first approach for MVP speed (TypeScript can be introduced later)
 - Keep Firebase logic in service modules, not React components
 - Keep shared domain types centralized
 - Document any schema/rule updates in this file

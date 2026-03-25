@@ -21,7 +21,7 @@ Reason: both codebases can evolve in parallel while you validate parity.
 From repository root:
 
 ```bash
-npm create vite@latest web -- --template react-ts
+npm create vite@latest web -- --template react
 cd web
 npm install
 npm install firebase react-router-dom
@@ -75,7 +75,7 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
 
-### 4.2 `web/src/lib/firebase.ts`
+### 4.2 `web/src/lib/firebase.js`
 
 ```ts
 import { initializeApp } from "firebase/app";
@@ -97,7 +97,7 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 ```
 
-### 4.3 `web/src/types/domain.ts`
+### 4.3 `web/src/types/domain.js`
 
 ```ts
 export type ServiceName =
@@ -128,7 +128,7 @@ export interface Vehicle {
 }
 ```
 
-### 4.4 `web/src/services/maintenanceService.ts`
+### 4.4 `web/src/services/maintenanceService.js`
 
 ```ts
 import type { ServiceRecord } from "../types/domain";
@@ -162,7 +162,7 @@ export function getServiceStatus(
 }
 ```
 
-### 4.5 `web/src/App.tsx`
+### 4.5 `web/src/App.jsx`
 
 ```tsx
 function App() {
@@ -194,10 +194,10 @@ Then verify:
 
 ## 6) Mapping Existing Python Models -> Web Types
 
-- `Vehicle` (`mvp/models.py`) -> `Vehicle` (`web/src/types/domain.ts`)
-- `ServiceRecord` (`mvp/models.py`) -> `ServiceRecord` (`web/src/types/domain.ts`)
-- `ServiceName` enum (`mvp/models.py`) -> string union `ServiceName`
-- Controller logic (`mvp/controller.py`) -> `web/src/services/maintenanceService.ts`
+- `Vehicle` (`mvp/models.py`) -> `Vehicle` shape (`web/src/types/domain.js`)
+- `ServiceRecord` (`mvp/models.py`) -> `ServiceRecord` shape (`web/src/types/domain.js`)
+- `ServiceName` enum (`mvp/models.py`) -> `SERVICE_NAMES` constants in `web/src/types/domain.js`
+- Controller logic (`mvp/controller.py`) -> `web/src/services/maintenanceService.js`
 
 ## 7) First Milestone Definition (Recommended)
 
@@ -213,7 +213,7 @@ Complete this before feature expansion:
 
 - `web/` exists and dependencies are installed
 - `.env.local` has all six Firebase variables
-- `web/src/lib/firebase.ts` exports `auth` and `db`
+- `web/src/lib/firebase.js` exports `auth` and `db`
 - Domain types compile
 - App renders startup message
 
