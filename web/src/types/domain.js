@@ -11,6 +11,19 @@ export const SERVICE_NAMES = [
   'brake_fluid',
 ];
 
+export const SERVICE_INTERVALS = Object.freeze({
+  oil_change: Object.freeze({ miles: Object.freeze([5000, 7500]), months: Object.freeze([3, 6]) }),
+  air_intake_filter: Object.freeze({ miles: Object.freeze([15000, 30000]) }),
+  cabin_air_filter: Object.freeze({ miles: Object.freeze([15000, 25000]), months: Object.freeze([12, 12]) }),
+  tire_rotation: Object.freeze({ miles: Object.freeze([5000, 7500]) }),
+  transmission_fluid: Object.freeze({ miles: Object.freeze([30000, 60000]) }),
+  brake_pads_inspection: Object.freeze({ miles: Object.freeze([25000, 70000]) }),
+  battery: Object.freeze({ miles: Object.freeze([30000, 50000]), years: Object.freeze([3, 5]) }),
+  coolant_flush: Object.freeze({ miles: Object.freeze([30000, 50000]) }),
+  spark_plugs: Object.freeze({ miles: Object.freeze([30000, 100000]) }),
+  brake_fluid: Object.freeze({ miles: Object.freeze([20000, 45000]), years: Object.freeze([2, 3]) }),
+});
+
 const SERVICE_NAME_SET = new Set(SERVICE_NAMES);
 
 export const SERVICE_STATUS = Object.freeze({
@@ -22,6 +35,21 @@ export const SERVICE_STATUS = Object.freeze({
 
 export function isKnownServiceName(serviceName) {
   return SERVICE_NAME_SET.has(serviceName);
+}
+
+export function getServiceInterval(serviceName) {
+  if (!isKnownServiceName(serviceName)) {
+    return null;
+  }
+
+  return SERVICE_INTERVALS[serviceName] ?? null;
+}
+
+export function listServiceIntervals() {
+  return SERVICE_NAMES.map((serviceName) => ({
+    serviceName,
+    ...SERVICE_INTERVALS[serviceName],
+  }));
 }
 
 export function createServiceRecord(input = {}) {

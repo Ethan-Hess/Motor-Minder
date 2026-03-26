@@ -24,6 +24,7 @@ wheels/
 venv/
 ENV/
 env/
+.venv/
 
 # IDE
 .vscode/
@@ -40,8 +41,10 @@ Thumbs.db
 *.json~
 *.bak
 
-# Node / Vite
-node_modules/
-web/node_modules/
-web/dist/
-*.tsbuildinfo
+# Testing and tooling
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/

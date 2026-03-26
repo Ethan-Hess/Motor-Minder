@@ -97,6 +97,131 @@ Note: local Firestore rules allow unauthenticated read/write only for `users/dev
 - `src/types/`: Domain model types and validators (Model layer)
 - `src/lib/firebase.js`: Firebase SDK initialization with emulator auto-connection
 
+## Testing
+
+This project uses **Vitest** for frontend unit tests.
+
+### Run tests
+
+```bash
+cd /workspaces/The-Backlog-Blackhole/web
+npm test
+```
+
+Run in watch mode while developing:
+
+```bash
+cd /workspaces/The-Backlog-Blackhole/web
+npm run test:watch
+```
+
+### Current test coverage
+
+- `src/services/maintenanceService.test.js`
+  - Verifies status computation for unknown, missing, due soon, overdue, mileage-only, time-only, and combined scenarios.
+- `src/services/serviceIntervalService.test.js`
+  - Verifies interval lookup for known/unknown services and interval list shape.
+- `src/services/serviceLogService.test.js`
+  - Verifies service-layer validation and delegation to repository functions.
+- `src/services/mechanicService.test.js`
+  - Verifies city/state matching behavior, normalization, and no-match cases.
+
+### Recommended local validation sequence
+
+```bash
+cd /workspaces/The-Backlog-Blackhole/web
+npm run lint
+npm test
+npm run build
+```
+
+## Using Services In Frontend
+
+Frontend pages/components should call **service modules** in `src/services`.
+Avoid calling repository modules directly from UI components.
+
+### 1) Vehicle operations
+
+Use `src/services/vehicleService.js` for list/get/add/edit/remove flows.
+
+```js
+import { addVehicle, listVehicles } from "../services/vehicleService.js";
+
+const userId = auth.currentUser?.uid ?? "dev-local-user";
+const vehicles = await listVehicles(userId);
+
+await addVehicle(userId, {
+  make: "Toyota",
+  model: "Camry",
+  year: 2018,
+  currentMileage: 72000,
+});
+```
+
+### 2) Service logging and history
+
+Use `src/services/serviceLogService.js` to write logs and read history.
+
+```js
+import {
+  logService,
+  listVehicleServiceHistory,
+  listVehicleServices,
+} from "../services/serviceLogService.js";
+
+const userId = auth.currentUser?.uid ?? "dev-local-user";
+
+await logService(userId, vehicleId, "oil_change", 73500, "2026-03-26");
+
+const history = await listVehicleServiceHistory(userId, vehicleId);
+const latestByService = await listVehicleServices(userId, vehicleId);
+```
+
+### 3) Interval lookup + maintenance status
+
+Use `src/services/serviceIntervalService.js` with `src/services/maintenanceService.js`.
+
+```js
+import { getIntervalForService } from "../services/serviceIntervalService.js";
+import { getServiceStatusDetailed } from "../services/maintenanceService.js";
+
+const interval = getIntervalForService("oil_change");
+const status = getServiceStatusDetailed(
+  vehicle.currentMileage,
+  vehicle.lastService?.oil_change,
+  interval,
+  new Date(),
+);
+
+// status => { status, dueMiles, dueDate, overdueAmount, missing }
+```
+
+### 4) Mechanic lookup
+
+Use `src/services/mechanicService.js` for list/search behavior.
+
+```js
+import {
+  findMechanicByCityState,
+  listMechanics,
+} from "../services/mechanicService.js";
+
+const allMechanics = await listMechanics();
+const match = await findMechanicByCityState("Alpine", "UT");
+```
+
+### Error handling pattern
+
+Service functions throw errors for invalid input or failed operations. Handle them in UI code:
+
+```js
+try {
+  await logService(userId, vehicleId, serviceName, mileage, date);
+} catch (error) {
+  setError(error.message ?? "Operation failed");
+}
+```
+
 ## Development Tips
 
 ### Emulator Configuration
@@ -109,7 +234,8 @@ Note: local Firestore rules allow unauthenticated read/write only for `users/dev
 
 - All data created in the emulator is cleared when the emulator restarts
 - Use the Emulator UI (`http://127.0.0.1:4000/firestore`) to inspect collections and documents in real-time
-- The app uses user-scoped paths: `users/{userId}/vehicles/{vehicleId}`
+- The app uses user-scoped paths: `users/{userId}/vehicles/{vehicleId}` and `users/{userId}/service_logs/{logId}`
+- Mechanics lookup data is stored in top-level collection: `mechanics/{mechanicId}`
 
 ### Local Development User
 

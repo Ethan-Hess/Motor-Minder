@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
+/* global console, process */
+
 /**
- * Seed the Firebase emulator with test data from ../mvp/vehicles.json
+ * Seed the Firebase emulator with test data from MVP JSON files.
  * 
  * Usage:
  *   npm run seed-emulator
@@ -46,6 +48,8 @@ async function seedEmulator() {
     // Read vehicles from MVP data
     const vehiclesPath = resolve(__dirname, '../../mvp/vehicles.json');
     const vehiclesData = JSON.parse(readFileSync(vehiclesPath, 'utf-8'));
+    const mechanicsPath = resolve(__dirname, '../../mvp/mechanics.json');
+    const mechanicsData = JSON.parse(readFileSync(mechanicsPath, 'utf-8'));
 
     console.log(`📚 Loaded ${vehiclesData.vehicles.length} vehicles from vehicles.json`);
 
@@ -69,8 +73,25 @@ async function seedEmulator() {
       console.log(`  ✓ Added: ${vehicle.year} ${vehicle.make} ${vehicle.model} (${vehicleData.current_mileage} mi)`);
     }
 
+    console.log(`\n📚 Loaded ${mechanicsData.mechanics.length} mechanics from mechanics.json`);
+
+    // Seed mechanics lookup data in top-level collection
+    const mechanicsCollection = collection(db, 'mechanics');
+
+    for (const mechanic of mechanicsData.mechanics) {
+      const mechanicId = mechanic.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      const mechanicDocRef = doc(mechanicsCollection, mechanicId);
+
+      await setDoc(mechanicDocRef, mechanic);
+      console.log(`  ✓ Added mechanic: ${mechanic.name} (${mechanic.address.city}, ${mechanic.address.state})`);
+    }
+
     console.log(`\n✅ Emulator seeded successfully!`);
     console.log(`📍 Data location: users/${DEV_USER_ID}/vehicles/`);
+    console.log(`📍 Data location: mechanics/`);
     console.log(`🔍 View in Emulator UI: http://127.0.0.1:4000/firestore\n`);
 
     process.exit(0);
