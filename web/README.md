@@ -24,16 +24,18 @@ React + Vite frontend for MotorMinder vehicle maintenance tracker.
    npm install
    ```
 
-3. **The `.env` file is already configured for local development.** It uses dummy Firebase credentials that work with the local emulator. No action needed.
+3. **No Firebase config swapping needed for local dev.** Use the npm scripts below to choose emulator or live mode.
 
 ### Running the App Locally
 
-**Terminal 1 — Start Firebase emulators:**
+**Emulator mode (recommended for development):**
 
 ```bash
-cd /workspaces/The-Backlog-Blackhole/web
-firebase emulators:start --project motor-minder
+cd The-Backlog-Blackhole/web
+npm run dev:emulators
 ```
+
+This starts Firebase emulators and Vite together in one command.
 
 Expected output includes:
 
@@ -42,19 +44,17 @@ Expected output includes:
 │ i  View Emulator UI at http://127.0.0.1:4000/
 ```
 
-**Terminal 2 — Start Vite dev server:**
-
-```bash
-cd /workspaces/The-Backlog-Blackhole/web
-npm run dev
-```
-
-Expected output includes:
-
 ```
   VITE v6.2.1  ready in XXX ms
 
   ➜  Local:   http://localhost:5173/
+```
+
+**Live Firebase mode (no emulators):**
+
+```bash
+cd The-Backlog-Blackhole/web
+npm run dev
 ```
 
 ### Access the App
@@ -69,7 +69,7 @@ Load the sample vehicles from the MVP into the emulator:
 **Terminal 3 — Seed emulator data:**
 
 ```bash
-cd /workspaces/The-Backlog-Blackhole/web
+cd The-Backlog-Blackhole/web
 npm run seed-emulator
 ```
 
@@ -226,9 +226,10 @@ try {
 
 ### Emulator Configuration
 
-- Emulator hosts and ports are configured in `firebase.json` and `.env`
-- The app automatically connects to emulators when `VITE_USE_FIREBASE_EMULATORS=true` in `.env`
-- To switch to production Firebase, set `VITE_USE_FIREBASE_EMULATORS=false` and provide real Firebase config values in `.env`
+- Emulator hosts and ports are defined in `src/lib/firebase.js`
+- Use `npm run dev:emulators` to run app + emulators together
+- Use `npm run dev` to run the app against live Firebase by default
+- Emulator mode is enabled by Vite mode (`vite --mode emulators`), not by env variables
 
 ### Firestore Emulator Data
 

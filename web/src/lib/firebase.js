@@ -1,29 +1,45 @@
 import { initializeApp } from 'firebase/app';
 import { connectAuthEmulator, getAuth } from 'firebase/auth';
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+// import { getAnalytics } from "firebase/analytics";
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+// These values are safe to be public since they are only used to 
+// identify the Firebase project and do not contain any sensitive information.
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBuvN9jFqJ_clpPU4JXeEijzCX7oEzoOeI",
+  authDomain: "motor-minder-1d53c.firebaseapp.com",
+  projectId: "motor-minder-1d53c",
+  storageBucket: "motor-minder-1d53c.firebasestorage.app",
+  messagingSenderId: "983840324878",
+  appId: "1:983840324878:web:bd1f3dbe52a92729fb2b5f",
+  measurementId: "G-GQV2LLRXM0"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-const useFirebaseEmulators = import.meta.env.VITE_USE_FIREBASE_EMULATORS === 'true';
+const emulatorConfig = {
+  authHost: '127.0.0.1',
+  authPort: 9099,
+  firestoreHost: '127.0.0.1',
+  firestorePort: 8080,
+};
+
+const useFirebaseEmulators = import.meta.env.MODE === 'emulators';
 
 if (useFirebaseEmulators) {
-  const authHost = import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST || '127.0.0.1';
-  const authPort = Number.parseInt(import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_PORT || '9099', 10);
-  const firestoreHost = import.meta.env.VITE_FIRESTORE_EMULATOR_HOST || '127.0.0.1';
-  const firestorePort = Number.parseInt(import.meta.env.VITE_FIRESTORE_EMULATOR_PORT || '8080', 10);
-
-  connectAuthEmulator(auth, `http://${authHost}:${authPort}`, { disableWarnings: true });
-  connectFirestoreEmulator(db, firestoreHost, firestorePort);
+  connectAuthEmulator(auth, `http://${emulatorConfig.authHost}:${emulatorConfig.authPort}`, {
+    disableWarnings: true,
+  });
+  connectFirestoreEmulator(db, emulatorConfig.firestoreHost, emulatorConfig.firestorePort);
 }

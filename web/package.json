@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:emulators": "concurrently -k -n FIREBASE,VITE -c yellow,cyan \"firebase emulators:start --project motor-minder-1d53c\" \"vite --mode emulators\"",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",
+    "concurrently": "^9.1.2",
     "eslint": "^9.22.0",
     "firebase-tools": "^15.11.0",
     "vite": "^6.2.1",
