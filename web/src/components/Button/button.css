@@ -1,0 +1,90 @@
+.button {
+    display: inline-flex;
+    padding: var(--padding-xs, 8px) var(--padding-md, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-md);
+    border-radius: var(--border-xs, 8px);
+    border: 0.5px solid var(--ui-button-border-brand, #53B9AB);
+    background: var(--ui-button-default-brand, #12A594);
+    color: var(--ui-button-text-brand, #FAFEFD);
+    text-align: center;
+    font-size: var(--border-md, 16px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: var(--ui-button-hover-brand, #0D9B8A);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    color: var(--ui-button-text-brand, #FAFEFD);
+}
+
+.button:active {
+    background: var(--ui-button-active-brand, #008573);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
+    color: var(--ui-button-text-brand, #FAFEFD);
+}
+
+.button-surface {
+    display: inline-flex;
+    padding: var(--padding-xs, 8px) var(--padding-md, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-md);
+    border-radius: var(--border-xs, 8px);
+    border: 0.5px solid var(--ui-border-default-brand, #A1DED2);
+    background: var(--ui-background-default-brand, #FAFEFD);
+    color: var(--ui-text-high-contrast-brand, #0D3D38);
+    text-align: center;
+    font-size: var(--border-md, 16px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.2s ease-in-out;
+}
+
+.button-surface:hover {
+    border: 0.5px solid var(--ui-border-hover-brand, #83CDC1);
+    background: var(--ui-background-subtle-brand, #F3FBF9);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    color: var(--ui-text-high-contrast-brand, #0D3D38);
+}
+
+.button-surface:active {
+    border: 0.5px solid var(--ui-border-active-brand, #53B9AB);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
+    color: var(--ui-text-high-contrast-brand, #0D3D38);
+}
+
+.button-text {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    color: var(--ui-element-hover-brand, #0D9B8A);
+    background-color: transparent;
+    border-color: transparent;
+    text-align: center;
+    font-size: var(--text-md, 16px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.2s ease;
+}
+
+.button-text:hover {
+    color: var(--ui-text-low-contrast-brand, #008573);
+    background-color: transparent;
+    box-shadow: none;
+
+}
+
+.button-text:active {
+    color: var(--ui-text-high-contrast-brand, #0D3D38);
+    background-color: transparent;
+    box-shadow: none;
+}
