@@ -24,6 +24,7 @@ wheels/
 venv/
 ENV/
 env/
+.venv/
 
 # IDE
 .vscode/
@@ -39,3 +40,11 @@ Thumbs.db
 # Project specific
 *.json~
 *.bak
+
+# Testing and tooling
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/

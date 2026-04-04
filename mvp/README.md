@@ -6,14 +6,8 @@
 Brief description of the project, its purpose, and the problem it solves.
 -->
 
-This project proposes the development of a car maintenance tracking and
-recommendation application designed to help vehicle owners better understand,
-manage, and maintain their vehicles' health. A lot of drivers have a hard time
-keeping track of routine maintenance, like oil changes, tire rotations,
-inspections, etc. This can lead to unnecessary repairs, wasted money, and
-reduced vehicle lifespan. This application aims to consolidate vehicle
-information to give the user valuable maintenance recommendations based on
-vehicle condition data.
+This MVP was the initial product made for sprints 1 & 2. It showcased the main features
+of the desired application, while being deployed in a python cli environment.
 
 ## Project Goals
 
@@ -468,32 +462,6 @@ Example Session
 2. Log Oil Change
 3. View Dashboard Output: [0] 2020 Toyota Camry Odometer: 26000 ✅ Oil Change:
    OK (Due @ 32000 mi) 🟡 Tire Rotation: Due Soon
-
-## Repository Structure
-
-<!--
-Brief explanation of important directories/files.
--->
-
-### MotorMinder Repository Structure
-
-```text
-mvp/
-├── main.py                # Entry point, runs CLI
-├── cli.py                 # Handles user interaction and menu navigation
-├── controller.py          # Core application logic and service status checks
-├── data_handler.py        # Handles JSON data loading, saving, and updating
-├── models.py              # Defines Vehicle, ServiceRecord, and ServiceName enums
-├── view.py                # Handles CLI formatting (colors, bold text, etc.)
-├── service_intervals.json # Defines maintenance intervals for each service
-├── vehicles.json          # Auto-generated data file for user’s vehicles
-|-- mechanics.json         # JSON file for local mechanic directory
-
-web/
-├── package.json           # React + Vite scripts and dependencies
-├── src/                   # React application source
-|-- .env.local.example     # Firebase frontend environment template
-```
 
 ## Contributers
 

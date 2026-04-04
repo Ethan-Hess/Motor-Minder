@@ -1,0 +1,59 @@
+{
+    "name": "MotorMinder Migration Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "remoteUser": "vscode",
+    "forwardPorts": [
+        5173,
+        4000,
+        5001,
+        8080,
+        9099
+    ],
+    "portsAttributes": {
+        "5173": {
+            "label": "Vite Dev Server",
+            "onAutoForward": "openPreview"
+        },
+        "4000": {
+            "label": "Firebase Emulator UI"
+        },
+        "5001": {
+            "label": "Firebase Functions Emulator"
+        },
+        "8080": {
+            "label": "Firestore Emulator"
+        },
+        "9099": {
+            "label": "Firebase Auth Emulator"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "firebase.firebase-vscode"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/bin/python3",
+                "editor.formatOnSave": true,
+                "eslint.validate": [
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact"
+                ],
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/.pytest_cache": true
+                }
+            }
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/post-create.sh"
+}

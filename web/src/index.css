@@ -1,0 +1,446 @@
+:root {
+    /* --- Collection: Colors | Mode: Light Mode --- */
+
+    /* --- Colors / Red --- */
+    --colors-red-1: #fffcfc;
+    --colors-red-2: #fff7f7;
+    --colors-red-3: #feebec;
+    --colors-red-4: #ffdbdc;
+    --colors-red-5: #ffcdce;
+    --colors-red-6: #fdbdbe;
+    --colors-red-7: #f4a9aa;
+    --colors-red-8: #eb8e90;
+    --colors-red-9: #e5484d;
+    --colors-red-10: #dc3e42;
+    --colors-red-11: #ce2c31;
+    --colors-red-12: #641723;
+
+    /* --- Colors / Yellow --- */
+    --colors-yellow-1: #fdfdf9;
+    --colors-yellow-2: #fefce9;
+    --colors-yellow-3: #fffab8;
+    --colors-yellow-4: #fff394;
+    --colors-yellow-5: #ffe770;
+    --colors-yellow-6: #f3d768;
+    --colors-yellow-7: #e4c767;
+    --colors-yellow-8: #d5ae39;
+    --colors-yellow-9: #ffe629;
+    --colors-yellow-10: #ffdc00;
+    --colors-yellow-11: #9e6c00;
+    --colors-yellow-12: #473b1f;
+
+    /* --- Colors / Green --- */
+    --colors-green-1: #fbfefc;
+    --colors-green-2: #f4fbf6;
+    --colors-green-3: #e6f6eb;
+    --colors-green-4: #d6f1df;
+    --colors-green-5: #c4e8d1;
+    --colors-green-6: #adddc0;
+    --colors-green-7: #8eceaa;
+    --colors-green-8: #5bb98b;
+    --colors-green-9: #30a46c;
+    --colors-green-10: #2b9a66;
+    --colors-green-11: #218358;
+    --colors-green-12: #193b2d;
+
+    /* --- Colors / Teal --- */
+    --colors-teal-1: #fafefd;
+    --colors-teal-2: #f3fbf9;
+    --colors-teal-3: #e0f8f3;
+    --colors-teal-4: #ccf3ea;
+    --colors-teal-5: #b8eae0;
+    --colors-teal-6: #a1ded2;
+    --colors-teal-7: #83cdc1;
+    --colors-teal-8: #53b9ab;
+    --colors-teal-9: #12a594;
+    --colors-teal-10: #0d9b8a;
+    --colors-teal-11: #008573;
+    --colors-teal-12: #0d3d38;
+
+    /* --- Colors / Gray --- */
+    --colors-gray-1: #fcfcfc;
+    --colors-gray-2: #f9f9f9;
+    --colors-gray-3: #f0f0f0;
+    --colors-gray-4: #e8e8e8;
+    --colors-gray-5: #e0e0e0;
+    --colors-gray-6: #d9d9d9;
+    --colors-gray-7: #cecece;
+    --colors-gray-8: #bbbbbb;
+    --colors-gray-9: #8d8d8d;
+    --colors-gray-10: #838383;
+    --colors-gray-11: #646464;
+    --colors-gray-12: #202020;
+
+    /* --- UI / Background / Default --- */
+    --ui-background-default-error: var(--colors-red-1);
+    --ui-background-default-warning: var(--colors-yellow-1);
+    --ui-background-default-success: var(--colors-green-1);
+    --ui-background-default-brand: var(--colors-teal-1);
+    --ui-background-default-neutral: var(--colors-gray-1);
+
+    /* --- UI / Background / Subtle --- */
+    --ui-background-subtle-error: var(--colors-red-2);
+    --ui-background-subtle-warning: var(--colors-yellow-2);
+    --ui-background-subtle-success: var(--colors-green-2);
+    --ui-background-subtle-brand: var(--colors-teal-2);
+    --ui-background-subtle-neutral: var(--colors-gray-2);
+
+    /* --- UI / Interactive Components / Default --- */
+    --ui-interactive-components-default-error: var(--colors-red-3);
+    --ui-interactive-components-default-warning: var(--colors-yellow-3);
+    --ui-interactive-components-default-success: var(--colors-green-3);
+    --ui-interactive-components-default-brand: var(--colors-teal-3);
+    --ui-interactive-components-default-neutral: var(--colors-gray-3);
+
+    /* --- UI / Interactive Components / Hover --- */
+    --ui-interactive-components-hover-error: var(--colors-red-4);
+    --ui-interactive-components-hover-warning: var(--colors-yellow-4);
+    --ui-interactive-components-hover-success: var(--colors-green-4);
+    --ui-interactive-components-hover-brand: var(--colors-teal-4);
+    --ui-interactive-components-hover-neutral: var(--colors-gray-4);
+
+    /* --- UI / Interactive Components / Active --- */
+    --ui-interactive-components-active-error: var(--colors-red-5);
+    --ui-interactive-components-active-warning: var(--colors-yellow-5);
+    --ui-interactive-components-active-success: var(--colors-green-5);
+    --ui-interactive-components-active-brand: var(--colors-teal-5);
+    --ui-interactive-components-active-neutral: var(--colors-gray-5);
+
+    /* --- UI / Element / Default --- */
+    --ui-element-default-error: var(--colors-red-9);
+    --ui-element-default-warning: var(--colors-yellow-9);
+    --ui-element-default-success: var(--colors-green-9);
+    --ui-element-default-brand: var(--colors-teal-9);
+    --ui-element-default-neutral: var(--colors-gray-9);
+
+    /* --- UI / Text / Low-Contrast --- */
+    --ui-text-low-contrast-error: var(--colors-red-11);
+    --ui-text-low-contrast-warning: var(--colors-yellow-11);
+    --ui-text-low-contrast-success: var(--colors-green-11);
+    --ui-text-low-contrast-brand: var(--colors-teal-11);
+    --ui-text-low-contrast-neutral: var(--colors-gray-11);
+
+    /* --- UI / Button / Default --- */
+    --ui-button-default-error: var(--colors-red-9);
+    --ui-button-default-warning: var(--colors-yellow-9);
+    --ui-button-default-success: var(--colors-green-9);
+    --ui-button-default-brand: var(--colors-teal-9);
+    --ui-button-default-neutral: var(--colors-gray-9);
+
+    /* --- UI / Border / Default --- */
+    --ui-border-default-error: var(--colors-red-6);
+    --ui-border-default-warning: var(--colors-yellow-6);
+    --ui-border-default-success: var(--colors-green-6);
+    --ui-border-default-brand: var(--colors-teal-6);
+    --ui-border-default-neutral: var(--colors-gray-6);
+
+    /* --- UI / Border / Hover --- */
+    --ui-border-hover-error: var(--colors-red-7);
+    --ui-border-hover-warning: var(--colors-yellow-7);
+    --ui-border-hover-success: var(--colors-green-7);
+    --ui-border-hover-brand: var(--colors-teal-7);
+    --ui-border-hover-neutral: var(--colors-gray-7);
+
+    /* --- UI / Border / Active --- */
+    --ui-border-active-error: var(--colors-red-8);
+    --ui-border-active-warning: var(--colors-yellow-8);
+    --ui-border-active-success: var(--colors-green-8);
+    --ui-border-active-brand: var(--colors-teal-8);
+    --ui-border-active-neutral: var(--colors-gray-8);
+
+    /* --- UI / Element / Hover --- */
+    --ui-element-hover-error: var(--colors-red-10);
+    --ui-element-hover-warning: var(--colors-yellow-10);
+    --ui-element-hover-success: var(--colors-green-10);
+    --ui-element-hover-brand: var(--colors-teal-10);
+    --ui-element-hover-neutral: var(--colors-gray-10);
+
+    /* --- UI / Text / High-Contrast --- */
+    --ui-text-high-contrast-error: var(--colors-red-12);
+    --ui-text-high-contrast-warning: var(--colors-yellow-12);
+    --ui-text-high-contrast-success: var(--colors-green-12);
+    --ui-text-high-contrast-brand: var(--colors-teal-12);
+    --ui-text-high-contrast-neutral: var(--colors-gray-12);
+
+    /* --- UI / Button / Hover --- */
+    --ui-button-hover-error: var(--colors-red-10);
+    --ui-button-hover-warning: var(--colors-yellow-10);
+    --ui-button-hover-success: var(--colors-green-10);
+    --ui-button-hover-brand: var(--colors-teal-10);
+    --ui-button-hover-neutral: var(--colors-gray-10);
+
+    /* --- UI / Button / Active --- */
+    --ui-button-active-error: var(--colors-red-11);
+    --ui-button-active-warning: var(--colors-yellow-11);
+    --ui-button-active-success: var(--colors-green-11);
+    --ui-button-active-brand: var(--colors-teal-11);
+    --ui-button-active-neutral: var(--colors-gray-11);
+
+    /* --- UI / Button / Text --- */
+    --ui-button-text-error: var(--colors-red-1);
+    --ui-button-text-warning: var(--colors-yellow-12);
+    --ui-button-text-success: var(--colors-green-1);
+    --ui-button-text-brand: var(--colors-teal-1);
+    --ui-button-text-neutral: var(--colors-gray-1);
+
+    /* --- UI / Button / Border --- */
+    --ui-button-border-error: var(--colors-red-8);
+    --ui-button-border-warning: var(--colors-yellow-8);
+    --ui-button-border-success: var(--colors-green-8);
+    --ui-button-border-brand: var(--colors-teal-8);
+    --ui-button-border-neutral: var(--colors-gray-8);
+
+    /* --- Collection: Sizing --- */
+
+    /* --- Border --- */
+    --border-xxs: 4px;
+    --border-xs: 8px;
+    --border-sm: 12px;
+    --border-md: 16px;
+    --border-lg: 20px;
+    --border-xl: 24px;
+    --border-xxl: 32px;
+
+    /* --- Padding --- */
+    --padding-xxs: 4px;
+    --padding-xs: 8px;
+    --padding-sm: 12px;
+    --padding-md: 16px;
+    --padding-lg: 20px;
+    --padding-xl: 24px;
+    --padding-xxl: 32px;
+
+    /* --- Text --- */
+    --text-xxs: 4px;
+    --text-xs: 8px;
+    --text-sm: 12px;
+    --text-md: 16px;
+    --text-lg: 20px;
+    --text-xl: 24px;
+    --text-xxl: 32px;
+    --text-huge: 40px;
+
+    /* --- Gap --- */
+    --gap-xxs: 4px;
+    --gap-xs: 8px;
+    --gap-sm: 12px;
+    --gap-md: 16px;
+    --gap-lg: 20px;
+    --gap-xl: 24px;
+    --gap-xxl: 32px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--ui-background-default-neutral);
+    color: var(--ui-text-high-contrast-neutral);
+    padding: var(--padding-md);
+}
+
+h1 {
+    font-size: var(--text-huge);
+    margin: 0;
+}
+
+h2 {
+    font-size: var(--text-xxl);
+}
+
+h3 {
+    font-size: var(--text-xl);
+}
+
+h4 {
+    font-size: var(--text-lg);
+}
+
+h5 {
+    font-size: var(--text-md);
+}
+
+h6 {
+    font-size: var(--text-sm);
+}
+
+p {
+    font-size: var(--text-md);
+}
+
+form {
+
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--colors-teal-9);
+}
+
+a:active {
+    color: var(--colors-teal-11);
+}
+
+input {
+    display: inline-flex;
+    min-width: 160px;
+    padding: var(--border-xs, 8px) var(--border-md, 16px);
+    align-items: center;
+    gap: var(--gap-md, 16px);
+    border-radius: var(--border-xs, 8px);
+    border: 0.5px solid var(--ui-border-default-brand, #A1DED2);
+    transition: all 0.2s ease;
+}
+
+input:hover {
+    border: 0.5px solid var(--ui-border-hover-brand, #83CDC1);
+    background: var(--ui-background-default-brand, #FAFEFD);
+}
+
+input:focus {
+    border: 0.5px solid var(--ui-border-active-brand, #53B9AB);
+}
+
+textarea {
+
+}
+
+textarea:hover {
+
+}
+
+textarea:focus {
+
+}
+
+label {
+    font-size: var(--text-md);
+    font-weight: 600;
+}
+
+.page-wrap {
+    text-wrap: pretty;
+}
+
+.main-wrap {
+}
+
+.section-padding-lg {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+.container-lg {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75vw;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--gap-md);
+}
+
+.card-wrap-horizontal {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-xxl, 32px);
+}
+
+.card-wrap-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-xxl, 32px);
+}
+
+.header-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-md, 16px);
+    text-align: center;
+}
+
+.section-content-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-xl, 24px);
+    text-align: center;
+}
+
+.features-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--gap-xxl, 32px);
+    align-self: stretch;
+}
+
+.features-content-wrap {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--gap-xxl, 32px);
+    align-self: stretch;
+}
+
+.features-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-md, 16px);
+}
+
+.utility-wrap-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-md, 16px);
+}
+
+.features-label {
+    text-align: center;
+    font-size: var(--text-lg, 20px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.features-subtext {
+    text-align: center;
+    font-size: var(--text-sm, 12px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.icon-sm {
+    height: 1rem;
+    width: 1rem;
+}
+
+.icon-md {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.icon-lg {
+    height: 2rem;
+    width: 2rem;
+}
+
+.icon-xl {
+    height: 3rem;
+    width: 3rem;
+}
