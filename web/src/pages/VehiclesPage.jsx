@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useAuth } from '../context/AuthContext.jsx';
 import {
   addVehicle,
   editVehicle,
   listVehicles,
   removeVehicle,
 } from '../services/vehicleService.js';
-import { auth } from '../lib/firebase.js';
-
-const DEV_USER_ID = 'dev-local-user';
 
 function VehiclesPage() {
+  const { uid: userId } = useAuth();
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -18,8 +17,6 @@ function VehiclesPage() {
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
   const [currentMileage, setCurrentMileage] = useState('');
-
-  const userId = auth.currentUser?.uid ?? DEV_USER_ID;
 
   async function refreshVehicles() {
     setLoading(true);
@@ -116,7 +113,7 @@ function VehiclesPage() {
   return (
     <main>
       <h1>Vehicles</h1>
-      <p>Signed-in user ID is used when available; fallback is <strong>{DEV_USER_ID}</strong>.</p>
+
 
       <form onSubmit={handleAddVehicle}>
         <h2>Add Vehicle</h2>

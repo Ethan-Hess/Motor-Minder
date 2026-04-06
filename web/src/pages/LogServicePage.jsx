@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { auth } from '../lib/firebase.js';
+import { useAuth } from '../context/AuthContext.jsx';
 import { logService, listVehicleServiceHistory } from '../services/serviceLogService.js';
 import { listVehicles } from '../services/vehicleService.js';
 import { SERVICE_NAMES } from '../types/domain.js';
-
-const DEV_USER_ID = 'dev-local-user';
 
 function todayIsoDate() {
   return new Date().toISOString().slice(0, 10);
@@ -23,7 +21,7 @@ function LogServicePage() {
   const [mileage, setMileage] = useState('');
   const [serviceDate, setServiceDate] = useState(todayIsoDate());
 
-  const userId = auth.currentUser?.uid ?? DEV_USER_ID;
+  const { uid: userId } = useAuth();
 
   const selectedVehicle = useMemo(
     () => vehicles.find((vehicle) => vehicle.id === vehicleId) ?? null,
@@ -113,8 +111,6 @@ function LogServicePage() {
   return (
     <main>
       <h1>Log Service</h1>
-      <p>Signed-in user ID is used when available; fallback is <strong>{DEV_USER_ID}</strong>.</p>
-
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="vehicle">Vehicle</label>
