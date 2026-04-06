@@ -1,7 +1,5 @@
 import Button from "../components/Button/Button.jsx";
-import Card from "../components/Card/Card.jsx";
 import Footer from "../components/Footer/Footer.jsx";
-import Form from "../components/Form/Form.jsx";
 import Navbar from "../components/Navigation/Navbar.jsx";
 
 function HomePage() {
