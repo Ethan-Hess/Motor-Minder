@@ -13,8 +13,9 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    transition: all 0.2s ease-in-out;
+    align-self: stretch;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .button:hover {
@@ -44,6 +45,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    align-self: stretch;
     transition: all 0.2s ease-in-out;
 }
 
@@ -73,6 +75,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    align-self: stretch;
     transition: all 0.2s ease;
 }
 
