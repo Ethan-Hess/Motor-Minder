@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import HomePage from "../pages/HomePage.jsx";
 import DashboardPage from '../pages/DashboardPage.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
 import LogServicePage from '../pages/LogServicePage.jsx';
@@ -23,10 +22,6 @@ function RequireAuth({ children }) {
 }
 
 export const appRouter = createBrowserRouter([
-    {
-        path: "/",
-        element: <HomePage />
-    },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <SignupPage /> },
   {
