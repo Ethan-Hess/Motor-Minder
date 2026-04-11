@@ -20,7 +20,7 @@ class TestController(TestCase):
         with open(self.temp_filename, "w") as f:
             json.dump({"vehicles": []}, f)
 
-        self.controller = Controller(data_file=self.temp_filename)
+        self.controller = Controller(vehicle_file=self.temp_filename)
 
     def tearDown(self):
         DataHandler._instance = None
@@ -98,7 +98,7 @@ class TestController(TestCase):
             }, f)
 
         DataHandler._instance = None
-        self.controller = Controller(data_file=self.temp_filename)
+        self.controller = Controller(vehicle_file=self.temp_filename)
 
         vehicles = self.controller.get_vehicles()
 
@@ -187,7 +187,7 @@ class TestController(TestCase):
             }, f)
 
         DataHandler._instance = None
-        self.controller = Controller(data_file=self.temp_filename)
+        self.controller = Controller(vehicle_file=self.temp_filename)
 
         services = self.controller.get_vehicle_services(0)
 
