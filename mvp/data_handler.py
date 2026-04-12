@@ -10,7 +10,7 @@ class DataHandler:
 
     _instance = None
 
-    def __new__(cls, filename: str = 'vehicles.json'):
+    def __new__(cls, vehicle_file: str = 'vehicles.json', **kwargs):
         if cls._instance is None:
             cls._instance = super(DataHandler, cls).__new__(cls)
             cls._instance._initialized = False

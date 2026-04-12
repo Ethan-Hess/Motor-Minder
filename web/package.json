@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",
+    "@vitest/coverage-v8": "^2.1.9",
     "concurrently": "^9.1.2",
     "eslint": "^9.22.0",
     "firebase-tools": "^15.11.0",
