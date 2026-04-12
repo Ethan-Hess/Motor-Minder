@@ -1,6 +1,7 @@
 import Button from "../components/Button/Button.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import Navbar from "../components/Navigation/Navbar.jsx";
+import Icon from "../components/Icon/Icon.jsx";
 
 function HomePage() {
     return (
@@ -27,7 +28,7 @@ function HomePage() {
                         <div className="features-wrap">
                             <div className="features-content-wrap">
                                 <div className="features-content">
-                                    <img alt="icon" src="/assets/blank_image_square.png" className="icon-md"/>
+                                    <Icon name="plus" size="md" alt="Plus Icon"/>
                                     <div className="utility-wrap-vertical">
                                         <text className="features-label">Add your car</text>
                                         <p className="features-subtext">Input your vehicle details and let the app learn
@@ -35,7 +36,7 @@ function HomePage() {
                                     </div>
                                 </div>
                                 <div className="features-content">
-                                    <img alt="icon" src="/assets/blank_image_square.png" className="icon-md"/>
+                                    <Icon name="trendUp" size="md" alt="Trend Up Icon"/>
                                     <div className="utility-wrap-vertical">
                                         <text className="features-label">Track the work</text>
                                         <p className="features-subtext">Log services as they happen and watch your
@@ -43,7 +44,7 @@ function HomePage() {
                                     </div>
                                 </div>
                                 <div className="features-content">
-                                    <img alt="icon" src="/assets/blank_image_square.png" className="icon-md"/>
+                                    <Icon name="compass" size="md" alt="Compass Icon"/>
                                     <div className="utility-wrap-vertical">
                                         <text className="features-label">Get guidance</text>
                                         <p className="features-subtext">Receive smart recommendations based on your
@@ -51,7 +52,8 @@ function HomePage() {
                                     </div>
                                 </div>
                             </div>
-                            <img alt="Blank image" src="/assets/blank_image_square.png"/>
+                            <img alt="Blank image" src="/assets/car-mechanic-1.png"
+                                 style={{height: "400px", width: "400px"}}/>
                         </div>
                     </div>
                 </section>
@@ -68,7 +70,7 @@ function HomePage() {
                                 <Button text="Sign Up" link="/signup"/>
                                 <Button text="Login" link="/login" variant="surface"/>
                             </div>
-                            <img alt="Blank image" src="/assets/blank_image_rectangle.png"/>
+                            <img alt="Blank image" src="/assets/car-mechanic-2.png" style={{width: "100%"}}/>
                         </div>
                     </div>
                 </section>
