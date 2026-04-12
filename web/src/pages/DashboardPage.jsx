@@ -1,19 +1,26 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Icon from "../components/Icon/Icon.jsx";
+import Sidebar from "../components/Navigation/Sidebar.jsx";
 
 function DashboardPage() {
-  return (
-    <main>
-      <h1>MotorMinder Dashboard</h1>
-      <p>React + Vite + Firebase scaffold is ready.</p>
-      <nav>
-        <ul>
-          <li><Link to="/vehicles">Vehicles</Link></li>
-          <li><Link to="/log-service">Log Service</Link></li>
-          <li><Link to="/mechanics">Mechanics</Link></li>
-        </ul>
-      </nav>
-    </main>
-  );
+    return (
+        <div className="page-wrap">
+            <div className="dashboard-wrap">
+                <Sidebar/>
+                <div className="dashboard-main">
+                    <div className="dashboard-header">
+                        <h1>MotorMinder</h1>
+                    </div>
+                    <div className="dashboard-grid">
+                        <img alt="Future graph" src="/assets/blank_image_square.png"/>
+                        <img alt="Future graph" src="/assets/blank_image_square.png"/>
+                        <img alt="Future graph" src="/assets/blank_image_square.png"/>
+                        <img alt="Future graph" src="/assets/blank_image_square.png"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default DashboardPage;

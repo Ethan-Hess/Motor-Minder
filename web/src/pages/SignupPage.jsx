@@ -4,6 +4,8 @@ import {signUp} from '../services/authService.js';
 import Navbar from "../components/Navigation/Navbar.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 
+// import Button from "../components/Button/Button.jsx";
+
 function SignupPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
