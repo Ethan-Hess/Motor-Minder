@@ -67,7 +67,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    color: var(--ui-element-hover-brand, #0D9B8A);
+    color: var(--colors-teal-9, #12A594);
     background-color: transparent;
     border-color: transparent;
     text-align: center;
@@ -80,14 +80,28 @@
 }
 
 .button-text:hover {
-    color: var(--ui-text-low-contrast-brand, #008573);
+    color: var(--colors-teal-11, #008573);
     background-color: transparent;
     box-shadow: none;
 
 }
 
 .button-text:active {
-    color: var(--ui-text-high-contrast-brand, #0D3D38);
+    color: var(--colors-teal-12, #0D3D38);
     background-color: transparent;
     box-shadow: none;
+}
+
+.button-text.is-error {
+    color: var(--colors-red-9, #E5484D);
+}
+
+.button-text.is-error:hover {
+    color: var(--colors-red-11, #CE2C31);
+
+}
+
+.button-text.is-error:active {
+    color: var(--colors-red-12, #641723);
+
 }
