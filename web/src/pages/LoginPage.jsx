@@ -1,11 +1,13 @@
 import {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {signIn} from '../services/authService.js';
 import Navbar from "../components/Navigation/Navbar.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 
 function LoginPage() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname ?? '/dashboard';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -18,7 +20,7 @@ function LoginPage() {
 
         try {
             await signIn(email, password);
-            navigate('/');
+            navigate(from, {replace: true});
         } catch (err) {
             setError(err.message ?? 'Failed to sign in');
         } finally {

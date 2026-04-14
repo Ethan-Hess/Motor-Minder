@@ -2,8 +2,20 @@ import Button from "../components/Button/Button.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import Navbar from "../components/Navigation/Navbar.jsx";
 import Icon from "../components/Icon/Icon.jsx";
+import {Navigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext.jsx";
 
 function HomePage() {
+    const {user, loading} = useAuth();
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (user) {
+        return <Navigate to="/dashboard" replace/>;
+    }
+
     return (
         <div className="page-wrap">
             <Navbar/>
