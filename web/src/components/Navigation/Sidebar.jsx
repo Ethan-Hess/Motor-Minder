@@ -1,8 +1,16 @@
 import "./sidebar.css"
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Icon from "../Icon/Icon.jsx";
+import {signOut} from '../../services/authService.js';
 
 function Sidebar() {
+    const navigate = useNavigate();
+
+    async function handleSignOut() {
+        await signOut();
+        navigate('/');
+    }
+
     return (
         <div className="dashboard-nav">
             <div className="dashboard-nav-menu">
@@ -22,7 +30,7 @@ function Sidebar() {
             <div className="dashboard-nav-footer">
                 <div className="dashboard-link-wrap">
                     <Icon name="signOut" size="md" alt="Sign Out Icon"/>
-                    <Link className="dashboard-nav-link" to="/">Sign Out</Link>
+                    <button className="dashboard-nav-link" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
         </div>

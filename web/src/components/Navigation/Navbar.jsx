@@ -1,5 +1,6 @@
 import "./navbar.css";
 import {Link} from "react-router-dom";
+import navLogo from "../../assets/logos/logo-navbar.svg";
 
 function Navbar() {
     return (
@@ -7,7 +8,7 @@ function Navbar() {
             <div className="nav-container">
                 {/* TODO: Turn image into a link to the home page. */}
                 <a href="/">
-                    <img src="/assets/logos/logo-navbar.svg" alt="Blank image." className="nav-logo"/>
+                    <img src={navLogo} alt="Blank image." className="nav-logo"/>
                 </a>
                 <div className="nav-menu-wrap">
                     <div className="nav-link-wrap">
