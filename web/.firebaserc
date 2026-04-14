@@ -1,5 +1,6 @@
 {
   "projects": {
+    "default": "motor-minder-1d53c",
     "production": "motor-minder-1d53c"
   },
   "targets": {},
