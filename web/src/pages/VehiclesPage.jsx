@@ -7,6 +7,8 @@ import {
     removeVehicle,
 } from '../services/vehicleService.js';
 import Sidebar from "../components/Navigation/Sidebar.jsx";
+import Button from "../components/Button/Button.jsx";
+import Icon from "../components/Icon/Icon.jsx";
 
 function VehiclesPage() {
     const {uid: userId} = useAuth();
@@ -18,6 +20,9 @@ function VehiclesPage() {
     const [model, setModel] = useState('');
     const [year, setYear] = useState('');
     const [currentMileage, setCurrentMileage] = useState('');
+
+    // Used for the popup to add vehicles to user account
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     async function refreshVehicles() {
         setLoading(true);
@@ -55,6 +60,8 @@ function VehiclesPage() {
             setCurrentMileage('');
 
             await refreshVehicles();
+
+            setIsAddModalOpen(false);
         } catch (saveError) {
             setError(saveError.message ?? 'Failed to add vehicle');
         }
@@ -112,89 +119,103 @@ function VehiclesPage() {
     }
 
     return (
-        <div className="page-wrap">
-            <div className="dashboard-wrap">
-                <Sidebar/>
-                <div className="dashboard-main">
-                    <section className="vehicle-list-section">
-                        <div className="dashboard-header">
-                            <h1>Manage Vehicles</h1>
+        <div>
+            {isAddModalOpen ? (
+                <div className="modal-overlay" onClick={() => setIsAddModalOpen(false)}>
+                    <div className="modal-content" onClick={(event) => event.stopPropagation()}>
+                        <div onClick={() => setIsAddModalOpen(false)}>
+                            <Icon name="x" alt="X Icon" size="md"/>
                         </div>
-                        <h2>Vehicle List</h2>
-                        {loading ? <p>Loading vehicles...</p> : null}
-                        {!loading && vehicles.length === 0 ? <p>No vehicles found.</p> : null}
-                        {!loading && vehicles.length > 0 ? (
-                            <ul className="vehicle-list-wrap">
-                                {vehicles.map((vehicle) => (
-                                    <li className="vehicle-list-item"
-                                        key={vehicle.id || `${vehicle.make}-${vehicle.model}-${vehicle.year}`}>
-                                        {vehicle.year} {vehicle.make} {vehicle.model} (Odometer: {vehicle.currentMileage})
-                                        {' '}
-                                        <div className="divider-vertical"></div>
-                                        <div className="button-group">
-                                            <button className="button-text" type="button"
-                                                    onClick={() => handleEditVehicle(vehicle)}>
-                                                Edit
-                                            </button>
-                                            {' '}
-                                            <button className="button-text is-error" type="button"
-                                                    onClick={() => handleDeleteVehicle(vehicle)}>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : null}
-                    </section>
-
-                    {error ? <p>{error}</p> : null}
-
-                    <section className="dashboard-form-section">
-                        <div className="container-lg">
-                            <form onSubmit={handleAddVehicle}>
-                                <h2>Add Vehicle</h2>
-                                <div className="form-wrap">
-                                    <div className="input-wrap">
-                                        <label htmlFor="make">Make</label>
-                                        <input id="make" value={make} onChange={(event) => setMake(event.target.value)}
-                                               required/>
-                                    </div>
-                                    <div className="input-wrap">
-                                        <label htmlFor="model">Model</label>
-                                        <input id="model" value={model}
-                                               onChange={(event) => setModel(event.target.value)} required/>
-                                    </div>
-                                    <div className="input-wrap">
-                                        <label htmlFor="year">Year</label>
-                                        <input
-                                            id="year"
-                                            type="number"
-                                            min="1886"
-                                            value={year}
-                                            onChange={(event) => setYear(event.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="input-wrap">
-                                        <label htmlFor="currentMileage">Current Mileage</label>
-                                        <input
-                                            id="currentMileage"
-                                            type="number"
-                                            min="0"
-                                            value={currentMileage}
-                                            onChange={(event) => setCurrentMileage(event.target.value)}
-                                            required
-                                        />
-                                    </div>
+                        <form className="form-dashboard" onSubmit={handleAddVehicle}>
+                            <h2>Add Vehicle</h2>
+                            <div className="form-wrap">
+                                <div className="input-wrap">
+                                    <label htmlFor="make">Make</label>
+                                    <input id="make" value={make} onChange={(event) => setMake(event.target.value)}
+                                           required/>
                                 </div>
-                                <button className="button" type="submit">Add Vehicle</button>
-                            </form>
-                        </div>
-                    </section>
+                                <div className="input-wrap">
+                                    <label htmlFor="model">Model</label>
+                                    <input id="model" value={model}
+                                           onChange={(event) => setModel(event.target.value)} required/>
+                                </div>
+                                <div className="input-wrap">
+                                    <label htmlFor="year">Year</label>
+                                    <input
+                                        id="year"
+                                        type="number"
+                                        min="1886"
+                                        value={year}
+                                        onChange={(event) => setYear(event.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="input-wrap">
+                                    <label htmlFor="currentMileage">Current Mileage</label>
+                                    <input
+                                        id="currentMileage"
+                                        type="number"
+                                        min="0"
+                                        value={currentMileage}
+                                        onChange={(event) => setCurrentMileage(event.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <button className="button" type="submit">Add Vehicle</button>
+                        </form>
+                    </div>
+                </div>
+            ) : null}
+            <div className="page-wrap">
+                <div className="dashboard-wrap">
+                    <Sidebar/>
+                    <div className="dashboard-main">
+                        <section className="vehicle-list-section">
+                            <div className="dashboard-header">
+                                <h1>Manage Vehicles</h1>
+                            </div>
+                            <div className="section-header-horizontal">
+                                <h2>Vehicle List</h2>
+                                <div onClick={() => setIsAddModalOpen(true)}>
+                                    <Button text="Add" variant="text"/>
+                                </div>
+                            </div>
+
+                            {loading ? <p>Loading vehicles...</p> : null}
+                            {!loading && vehicles.length === 0 ?
+                                <p className="message-error">No vehicles found.</p> : null}
+                            {!loading && vehicles.length > 0 ? (
+                                <ul className="vehicle-list-wrap">
+                                    {vehicles.map((vehicle) => (
+                                        <li className="vehicle-list-item"
+                                            key={vehicle.id || `${vehicle.make}-${vehicle.model}-${vehicle.year}`}>
+                                            {vehicle.year} {vehicle.make} {vehicle.model} (Odometer: {vehicle.currentMileage})
+                                            {' '}
+                                            <div className="divider-vertical"></div>
+                                            <div className="button-group">
+                                                <button className="button-text" type="button"
+                                                        onClick={() => handleEditVehicle(vehicle)}>
+                                                    Edit
+                                                </button>
+                                                {' '}
+                                                <button className="button-text is-error" type="button"
+                                                        onClick={() => handleDeleteVehicle(vehicle)}>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : null}
+                        </section>
+
+                        {error ? <p>{error}</p> : null}
+                    </div>
                 </div>
             </div>
         </div>
+
     );
 }
 
