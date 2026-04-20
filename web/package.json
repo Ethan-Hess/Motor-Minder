@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
+    "check:asset-imports": "node scripts/check-asset-imports.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "seed-emulator": "node scripts/seed-emulator.js"

@@ -20,7 +20,7 @@ jobs:
         working-directory: web
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+      - run: npm ci && npm run check:asset-imports && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           entryPoint: ./web
