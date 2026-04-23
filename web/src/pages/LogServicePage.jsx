@@ -4,6 +4,8 @@ import {logService, listVehicleServiceHistory} from '../services/serviceLogServi
 import {listVehicles} from '../services/vehicleService.js';
 import {SERVICE_NAMES} from '../types/domain.js';
 import Sidebar from "../components/Navigation/Sidebar.jsx";
+import Icon from "../components/Icon/Icon.jsx";
+import Button from "../components/Button/Button.jsx";
 
 function todayIsoDate() {
     return new Date().toISOString().slice(0, 10);
@@ -21,6 +23,9 @@ function LogServicePage() {
     const [serviceName, setServiceName] = useState(SERVICE_NAMES[0]);
     const [mileage, setMileage] = useState('');
     const [serviceDate, setServiceDate] = useState(todayIsoDate());
+
+    // Used for the popup to log services to user vehicles
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const {uid: userId} = useAuth();
 
@@ -104,106 +109,118 @@ function LogServicePage() {
             setSuccessMessage('Service entry logged successfully.');
             await refreshVehicles();
             await refreshHistory(vehicleId);
+            setIsModalOpen(false);
         } catch (saveError) {
             setError(saveError.message ?? 'Failed to log service');
         }
     }
 
     return (
-        <div className="page-wrap">
-            <div className="dashboard-wrap">
-                <Sidebar/>
-                <div className="dashboard-main">
-                    <section className="dashboard-form-section">
-                        <div className="container-lg">
-                            <form onSubmit={handleSubmit}>
-                                <h1>Log Service</h1>
-                                <div className="form-wrap">
-                                    <div className="input-wrap">
-                                        <label htmlFor="vehicle">Vehicle</label>
-                                        <select
-                                            id="vehicle"
-                                            value={vehicleId}
-                                            onChange={(event) => setVehicleId(event.target.value)}
-                                            disabled={loadingVehicles || vehicles.length === 0}
-                                        >
-                                            {vehicles.length === 0 ?
-                                                <option value="">No vehicles available</option> : null}
-                                            {vehicles.map((vehicle) => (
-                                                <option key={vehicle.id} value={vehicle.id}>
-                                                    {vehicle.year} {vehicle.make} {vehicle.model}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-
-                                    <div className="input-wrap">
-                                        <label htmlFor="serviceName">Service</label>
-                                        <select
-                                            id="serviceName"
-                                            value={serviceName}
-                                            onChange={(event) => setServiceName(event.target.value)}
-                                        >
-                                            {SERVICE_NAMES.map((name) => (
-                                                <option key={name} value={name}>{name}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-
-                                    <div className="input-wrap">
-                                        <label htmlFor="mileage">Mileage</label>
-                                        <input
-                                            id="mileage"
-                                            type="number"
-                                            min="0"
-                                            value={mileage}
-                                            onChange={(event) => setMileage(event.target.value)}
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="input-wrap">
-                                        <label htmlFor="serviceDate">Date</label>
-                                        <input
-                                            id="serviceDate"
-                                            type="date"
-                                            value={serviceDate}
-                                            onChange={(event) => setServiceDate(event.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <button className="button" type="submit"
-                                        disabled={loadingVehicles || vehicles.length === 0}>Log Service
-                                </button>
-                            </form>
+        <div>
+            {isModalOpen ? (
+                <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+                    <div className="modal-content" onClick={(event) => event.stopPropagation()}>
+                        <div onClick={() => setIsModalOpen(false)}>
+                            <Icon name="x" alt="X Icon" size="md"/>
                         </div>
-                    </section>
-                    <section className="vehicle-list-section">
-                        <h2>Service History</h2>
+                        <form className="form-dashboard" onSubmit={handleSubmit}>
+                            <h2>Log Service</h2>
+                            <div className="form-wrap">
+                                <div className="input-wrap">
+                                    <label htmlFor="vehicle">Vehicle</label>
+                                    <select
+                                        id="vehicle"
+                                        value={vehicleId}
+                                        onChange={(event) => setVehicleId(event.target.value)}
+                                        disabled={loadingVehicles || vehicles.length === 0}
+                                    >
+                                        {vehicles.length === 0 ?
+                                            <option value="">No vehicles available</option> : null}
+                                        {vehicles.map((vehicle) => (
+                                            <option key={vehicle.id} value={vehicle.id}>
+                                                {vehicle.year} {vehicle.make} {vehicle.model}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="input-wrap">
+                                    <label htmlFor="serviceName">Service</label>
+                                    <select
+                                        id="serviceName"
+                                        value={serviceName}
+                                        onChange={(event) => setServiceName(event.target.value)}
+                                    >
+                                        {SERVICE_NAMES.map((name) => (
+                                            <option key={name} value={name}>{name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="input-wrap">
+                                    <label htmlFor="mileage">Mileage</label>
+                                    <input
+                                        id="mileage"
+                                        type="number"
+                                        min="0"
+                                        value={mileage}
+                                        onChange={(event) => setMileage(event.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="input-wrap">
+                                    <label htmlFor="serviceDate">Date</label>
+                                    <input
+                                        id="serviceDate"
+                                        type="date"
+                                        value={serviceDate}
+                                        onChange={(event) => setServiceDate(event.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <button className="button" type="submit"
+                                    disabled={loadingVehicles || vehicles.length === 0}>Log Service
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            ) : null}
+            <div className="page-wrap">
+                <div className="dashboard-wrap">
+                    <Sidebar/>
+                    <div className="dashboard-main">
+                        <section className="vehicle-list-section">
+                            <div className="dashboard-header">
+                                <h1>Manage Services</h1>
+                            </div>
+                            <div className="section-header-horizontal">
+                                <h2>Service History</h2>
+                                <div onClick={() => setIsModalOpen(true)}>
+                                    <Button text="Add" variant="text"/>
+                                </div>
+                            </div>
 
-                        {loadingHistory ? <p>Loading history...</p> : null}
+                            {loadingHistory ? <p>Loading history...</p> : null}
 
-                        {!loadingHistory && history.length === 0 ?
-                            <p>No service records for this vehicle yet.</p> : null}
-                        {!loadingHistory && history.length > 0 ? (
-                            <ul className="vehicle-list-wrap">
-                                {history.map((record) => (
-                                    <li className="vehicle-list-item" key={record.id}>
-                                        {record.date}: {record.serviceName} at {record.mileage} mi
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : null}
-                    </section>
+                            {!loadingHistory && history.length === 0 ?
+                                <p className="message-error">No service records for this vehicle yet.</p> : null}
+                            {!loadingHistory && history.length > 0 ? (
+                                <ul className="vehicle-list-wrap">
+                                    {history.map((record) => (
+                                        <li className="vehicle-list-item" key={record.id}>
+                                            {record.date}: {record.serviceName} at {record.mileage} mi
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : null}
+                        </section>
 
-                    {error ? <p>{error}</p> : null}
-                    {successMessage ? <p>{successMessage}</p> : null}
+                        {error ? <p>{error}</p> : null}
+                        {successMessage ? <p>{successMessage}</p> : null}
 
+                    </div>
                 </div>
             </div>
         </div>
-
     );
 }
 
