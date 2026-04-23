@@ -18,10 +18,10 @@ function Sidebar() {
                     <Icon name="listPlus" size="md" alt="List Plus Icon"/>
                     <Link className="dashboard-nav-link" to="/log-service">Log Service</Link>
                 </div>
-                <div className="dashboard-link-wrap">
-                    <Icon name="magnifyingGlass" size="md" alt="Magnifying Glass Icon"/>
-                    <Link className="dashboard-nav-link" to="/mechanics">Find Mechanic</Link>
-                </div>
+                {/*<div className="dashboard-link-wrap">*/}
+                {/*    <Icon name="magnifyingGlass" size="md" alt="Magnifying Glass Icon"/>*/}
+                {/*    <Link className="dashboard-nav-link" to="/mechanics">Find Mechanic</Link>*/}
+                {/*</div>*/}
             </div>
             <div className="dashboard-nav-footer">
                 <div className="dashboard-link-wrap">
