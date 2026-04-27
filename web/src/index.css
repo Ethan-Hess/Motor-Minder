@@ -416,6 +416,18 @@ label {
     font-size: var(--text-huge, 40px)
 }
 
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
 .section-padding-lg {
     padding-top: 10rem;
     padding-bottom: 10rem;
