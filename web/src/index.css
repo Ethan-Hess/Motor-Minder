@@ -676,7 +676,8 @@ label {
 .card-dashboard {
     display: flex;
     padding: var(--padding-md, 16px);
-    flex-direction: column;
+    flex-flow: column;
+    justify-content: space-between;
     align-items: center;
     gap: var(--gap-md, 16px);
     border-radius: var(--border-xs, 8px);
