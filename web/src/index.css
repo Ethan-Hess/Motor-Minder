@@ -428,6 +428,10 @@ label {
     text-align: center;
 }
 
+.text-color-brand {
+    color: var(--ui-element-default-brand)
+}
+
 .section-padding-lg {
     padding-top: 10rem;
     padding-bottom: 10rem;
