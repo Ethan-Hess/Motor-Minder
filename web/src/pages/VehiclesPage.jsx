@@ -22,7 +22,7 @@ function VehiclesPage() {
     const [currentMileage, setCurrentMileage] = useState('');
 
     // Used for the popup to add vehicles to user account
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     async function refreshVehicles() {
         setLoading(true);
@@ -61,7 +61,7 @@ function VehiclesPage() {
 
             await refreshVehicles();
 
-            setIsAddModalOpen(false);
+            setIsModalOpen(false);
         } catch (saveError) {
             setError(saveError.message ?? 'Failed to add vehicle');
         }
@@ -120,10 +120,10 @@ function VehiclesPage() {
 
     return (
         <div>
-            {isAddModalOpen ? (
-                <div className="modal-overlay" onClick={() => setIsAddModalOpen(false)}>
+            {isModalOpen ? (
+                <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
                     <div className="modal-content" onClick={(event) => event.stopPropagation()}>
-                        <div onClick={() => setIsAddModalOpen(false)}>
+                        <div onClick={() => setIsModalOpen(false)}>
                             <Icon name="x" alt="X Icon" size="md"/>
                         </div>
                         <form className="form-dashboard" onSubmit={handleAddVehicle}>
@@ -177,7 +177,7 @@ function VehiclesPage() {
                             </div>
                             <div className="section-header-horizontal">
                                 <h2>Vehicle List</h2>
-                                <div onClick={() => setIsAddModalOpen(true)}>
+                                <div onClick={() => setIsModalOpen(true)}>
                                     <Button text="Add" variant="text"/>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@ function VehiclesPage() {
                             ) : null}
                         </section>
 
-                        {error ? <p>{error}</p> : null}
+                        {error ? <p className="message-error">{error}</p> : null}
                     </div>
                 </div>
             </div>

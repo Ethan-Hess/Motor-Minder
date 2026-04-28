@@ -214,8 +214,8 @@ function LogServicePage() {
                             ) : null}
                         </section>
 
-                        {error ? <p>{error}</p> : null}
-                        {successMessage ? <p>{successMessage}</p> : null}
+                        {error ? <p className="message-error">{error}</p> : null}
+                        {successMessage ? <p className="message-success">{successMessage}</p> : null}
 
                     </div>
                 </div>

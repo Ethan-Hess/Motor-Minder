@@ -2,20 +2,8 @@ import Button from "../components/Button/Button.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import Navbar from "../components/Navigation/Navbar.jsx";
 import Icon from "../components/Icon/Icon.jsx";
-import {Navigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext.jsx";
 
 function HomePage() {
-    const {user, loading} = useAuth();
-
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
-    if (user) {
-        return <Navigate to="/dashboard" replace/>;
-    }
-
     return (
         <div className="page-wrap">
             <Navbar/>
@@ -24,7 +12,7 @@ function HomePage() {
                     {/* Hero section */}
                     <div className="container-lg">
                         <div className="header-wrap">
-                            <h1>MotorMinder</h1>
+                            <h1 className="text-color-brand">MotorMinder</h1>
                             <p>MotorMinder is a car maintenance tracking and recommendation application designed to help
                                 vehicle owners better understand, manage, and maintain their vehicles' health. A lot of
                                 drivers have a hard time keeping track of routine maintenance, like oil changes, tire
