@@ -134,22 +134,22 @@ function DashboardPage() {
                         <div className="dashboard-grid">
                             <div className="card-dashboard">
                                 <div className="text-size-xl text-align-center">Total Vehicles</div>
-                                <div className="text-size-huge">{totalVehicles}</div>
+                                <div className="text-size-huge text-color-brand">{totalVehicles}</div>
                             </div>
 
                             <div className="card-dashboard">
                                 <div className="text-size-xl text-align-center">Total Logged Services</div>
-                                <div className="text-size-huge">{totalLoggedServices}</div>
+                                <div className="text-size-huge text-color-brand">{totalLoggedServices}</div>
                             </div>
 
                             <div className="card-dashboard">
                                 <div className="text-size-xl text-align-center">Next Services Due</div>
-                                <div className="text-size-huge">{nextServicesDueCount}</div>
+                                <div className="text-size-huge text-color-brand">{nextServicesDueCount}</div>
                             </div>
 
                             <div className="card-dashboard">
                                 <div className="text-size-xl text-align-center">Overdue Services Count</div>
-                                <div className="text-size-huge">{overdueServicesCount}</div>
+                                <div className="text-size-huge text-color-brand">{overdueServicesCount}</div>
                             </div>
                         </div>
                     ) : null}
