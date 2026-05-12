@@ -52,7 +52,7 @@ function HomePage() {
                                     </div>
                                 </div>
                             </div>
-                            <img alt="Blank image" src="web/assets/car-mechanic-1.png"
+                            <img alt="Blank image" src="/assets/car-mechanic-1.png"
                                  style={{height: "400px", width: "400px"}}/>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ function HomePage() {
                                 <Button text="Sign Up" link="/signup"/>
                                 <Button text="Login" link="/login" variant="surface"/>
                             </div>
-                            <img alt="Blank image" src="web/assets/car-mechanic-2.png" style={{width: "100%"}}/>
+                            <img alt="Blank image" src="/assets/car-mechanic-2.png" style={{width: "100%"}}/>
                         </div>
                     </div>
                 </section>
