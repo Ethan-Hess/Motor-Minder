@@ -7,7 +7,7 @@ function Navbar() {
             <div className="nav-container">
                 {/* TODO: Turn image into a link to the home page. */}
                 <a href="/">
-                    <img src="/assets/logos/logo-navbar.svg" alt="Blank image." className="nav-logo"/>
+                    <img src="/src/assets/logos/logo-navbar.svg" alt="Blank image." className="nav-logo"/>
                 </a>
                 <div className="nav-menu-wrap">
                     <div className="nav-link-wrap">
