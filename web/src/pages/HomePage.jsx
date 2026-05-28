@@ -2,6 +2,8 @@ import Button from "../components/Button/Button.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import Navbar from "../components/Navigation/Navbar.jsx";
 import Icon from "../components/Icon/Icon.jsx";
+import mechanicImage1 from "@/assets/car-mechanic-1.png";
+import mechanicImage2 from "@/assets/car-mechanic-2.png";
 
 function HomePage() {
     return (
@@ -52,7 +54,7 @@ function HomePage() {
                                     </div>
                                 </div>
                             </div>
-                            <img alt="Car mechanic" src="web/src/assets/car-mechanic-1.png"
+                            <img alt="Car mechanic" src={mechanicImage1}
                                  style={{height: "400px", width: "400px"}}/>
                         </div>
                     </div>
@@ -70,7 +72,7 @@ function HomePage() {
                                 <Button text="Sign Up" link="/signup"/>
                                 <Button text="Login" link="/login" variant="surface"/>
                             </div>
-                            <img alt="Blank image" src="web/src/assets/car-mechanic-2.png" style={{width: "100%"}}/>
+                            <img alt="Car mechanic" src={mechanicImage2} style={{width: "100%"}}/>
                         </div>
                     </div>
                 </section>
