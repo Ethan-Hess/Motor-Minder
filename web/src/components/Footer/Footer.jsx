@@ -1,4 +1,5 @@
 import "./footer.css";
+import footerLogo from "@/assets/logos/logo-footer.svg";
 import {Link} from "react-router-dom";
 
 function Footer() {
@@ -7,7 +8,7 @@ function Footer() {
             <div className="container-lg">
                 <div className="footer-wrap">
                     <div className="footer-top">
-                        <img src="/src/assets/logos/logo-footer.svg" alt="Blank image." className="footer-logo"/>
+                        <img src={footerLogo} alt="MotorMinder logo" className="footer-logo"/>
                     </div>
                     <div className="footer-bottom">
                         <Link to="/" target="_blank" className="footer-link">Ethan Hess</Link>
